@@ -10,10 +10,10 @@
 
 This portfolio showcases 10 engineering, IT automation, IoT telemetry, research, and Data Analytics projects. It was redesigned into a bright, **light-first English engineering & data showcase** with:
 
-1. **Humanized First-Person Copy & Visual Previews:** Replaced text-heavy blocks with a Flagship Spotlight layout, inline visual data previews (Pareto bars, cohort heatmap cells, 24h diurnal curve, live server telemetry widget, provisioning terminal preview, and radar/FSM diagrams), and plain-English *Problem -> Solution -> Result* summaries.
+1. **Humanized First-Person Copy & Visual Previews:** Replaced text-heavy blocks with uniform 2-column project cards, inline visual data previews (Pareto bars, cohort heatmap cells, 24h diurnal curve, live server telemetry widget, provisioning terminal preview, and radar/FSM diagrams), and plain-English *Problem -> Solution -> Result* summaries.
 2. **Synchronized Light / Dark Mode Toggle:** Defaults to a bright daylight palette (`#f8fafc` background, `#ffffff` cards, `#2563eb` accent) via `data-theme="light"` persisted in `localStorage.getItem('daffa_theme_v2')`, syncing theme state seamlessly between `portfolio/index.html` and all four standalone dashboards in `portfolio/dashboards/`.
 3. **Interactive Case Studies for All 10 Projects:** Every project card features category filtering, live keyword search, verified KPI strips, and an expandable `<details>` engineering drawer containing architecture notes, SQL/Python/Batch/FSM snippets, and recommendations.
-4. **Flagship Healthcare Operations & BPJS E-Klaim Simulator:** Added `hospital-clinical-ops-analytics` featuring 8,400 outpatient visits, Biometric vs. Manual Counter SLA analysis, INA-CBG E-Klaim revenue-at-risk tracking, and an interactive What-If staffing/kiosk simulator.
+4. **Healthcare Operations & BPJS E-Klaim Simulator:** Added `hospital-clinical-ops-analytics` featuring 8,400 outpatient visits, Biometric vs. Manual Counter SLA analysis, INA-CBG E-Klaim revenue-at-risk tracking, and an interactive What-If staffing/kiosk simulator.
 5. **Updated Repository Links & GitHub Pages Deployment:** Deployed live at https://daffaahmdhan.github.io/ with all project links pointing to `https://github.com/DaffaAhmdhan/...`.
 
 ---
@@ -23,13 +23,13 @@ This portfolio showcases 10 engineering, IT automation, IoT telemetry, research,
 ```text
 cv/
 ├── portfolio/
-│   ├── index.html                           # Main English portfolio with Light/Dark toggle, Flagship Spotlight & 10 deep-dive case studies
+│   ├── index.html                           # Main English portfolio with Light/Dark toggle & 10 deep-dive case studies
 │   ├── DOCUMENTATION.md                     # This architecture & reproduction guide
 │   ├── CV_Daffa_Master_EN.pdf               # Downloadable English CV
 │   ├── CV_Daffa_Master_ID.pdf               # Downloadable Indonesian CV
 │   ├── photo.jpg                            # Profile photo
 │   └── dashboards/
-│       ├── hospital-ops-dashboard.html      # Flagship Dashboard (What-If Queue Simulator + BPJS E-Klaim)
+│       ├── hospital-ops-dashboard.html      # Hospital Ops Dashboard (What-If Queue Simulator + BPJS E-Klaim)
 │       ├── telecom-sla-dashboard.html       # Synced Dashboard 1 (Chart.js + SQL drawer + Analyst Notes)
 │       ├── ecommerce-rfm-dashboard.html     # Synced Dashboard 2 (Cohort Heatmap + RFM + Delivery Impact)
 │       └── iot-telemetry-dashboard.html     # Synced Dashboard 3 (24h Diurnal Curve + Zone Anomaly Matrix)
@@ -56,7 +56,7 @@ Each of the four SQL + Python Data Analytics projects uses a reproducible local 
 [4] output/*_metrics.json  ──>  [5] dashboard.html (Chart.js visualization)
 ```
 
-### Flagship Project: Hospital Clinical Queue, Biometric Check-In & BPJS E-Klaim Analytics
+### Project 0: Hospital Clinical Queue, Biometric Check-In & BPJS E-Klaim Analytics
 - **GitHub:** https://github.com/DaffaAhmdhan/hospital-clinical-ops-analytics
 - **Local Dashboard:** `portfolio/dashboards/hospital-ops-dashboard.html`
 - **Dataset:** 8,400 outpatient & emergency visits (`May 2026 – Oct 2026`) across 6 hospital departments (`Cardiology`, `Internal Medicine`, `Orthopedics`, `Pediatrics`, `Radiology / DICOM`, `Emergency / IGD`) totaling **Rp 11.28B** in billing.

@@ -188,7 +188,7 @@
     }
     .search-input:focus { outline: none; border-color: var(--accent); }
 
-    /* Project Grid & Flagship Spotlight */
+    /* Project Grid */
     .project-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 22px; }
     @media (max-width: 900px) { .project-grid { grid-template-columns: 1fr; } }
 
@@ -199,18 +199,6 @@
       transition: border-color 0.2s, box-shadow 0.2s, transform 0.2s;
     }
     .project-card:hover { border-color: var(--accent); box-shadow: var(--shadow-lg); transform: translateY(-2px); }
-
-    /* Full-width Flagship Spotlight */
-    .project-card.spotlight {
-      grid-column: 1 / -1;
-      border: 2px solid var(--accent);
-      padding: 26px;
-      box-shadow: var(--shadow-lg);
-    }
-    .spotlight-layout {
-      display: grid; grid-template-columns: 1.15fr 0.85fr; gap: 24px; align-items: stretch;
-    }
-    @media (max-width: 880px) { .spotlight-layout { grid-template-columns: 1fr; } }
 
     /* Visual Preview Headers */
     .proj-visual {
@@ -254,12 +242,8 @@
       font-size: 11.5px; font-weight: 700; padding: 3px 9px; border-radius: 6px;
       background: var(--accent-bg); color: var(--accent);
     }
-    .proj-cat.flagship {
-      background: var(--accent); color: #ffffff;
-    }
     .proj-year { font-size: 12.5px; color: var(--muted); font-weight: 600; }
     .proj-title { font-size: 19px; font-weight: 700; margin: 0 0 8px; line-height: 1.3; }
-    .spotlight .proj-title { font-size: 22px; font-weight: 800; }
     .proj-summary { font-size: 14.5px; color: var(--body); margin: 0 0 16px; }
 
     /* 3 Key Metrics Strip */
@@ -401,7 +385,7 @@
 
           <div style="display:flex; flex-wrap:wrap; gap:10px;">
             <a href="#projects" class="btn btn-primary">Explore 10 Projects</a>
-            <a href="dashboards/hospital-ops-dashboard.html" target="_blank" rel="noopener noreferrer" class="btn">Try Flagship Hospital Simulator &nearr;</a>
+            <a href="dashboards/hospital-ops-dashboard.html" target="_blank" rel="noopener noreferrer" class="btn">Hospital Ops Dashboard &nearr;</a>
             <a href="https://www.linkedin.com/in/daffa-ahmadhan-khusumah" target="_blank" rel="noopener noreferrer" class="btn">LinkedIn &nearr;</a>
             <a href="mailto:daffaahmadhan@gmail.com" class="btn">Email Me</a>
           </div>
@@ -471,81 +455,57 @@
 
       <div class="project-grid" id="projectsGrid">
 
-        <!-- FLAGSHIP PROJECT 01 (FULL-WIDTH SPOTLIGHT) -->
-        <article class="project-card spotlight" data-category="data">
-          <div class="spotlight-layout">
-            <div>
-              <div class="proj-top">
-                <span class="proj-cat flagship">&#9733; Flagship Project &bull; Healthcare Ops &amp; BPJS E-Klaim BI</span>
-                <span class="proj-year mono">2026</span>
+        <!-- PROJECT 01 -->
+        <article class="project-card" data-category="data">
+          <div>
+            <div class="proj-visual">
+              <div class="vis-head mono">
+                <span><span class="vis-dot" style="background:var(--accent);"></span>60-MIN OUTPATIENT SLA &amp; BIOMETRIC SPEED</span>
+                <span>8,400 VISITS</span>
               </div>
-              <h3 class="proj-title">01. Hospital Clinical Queue, Biometric Check-In &amp; BPJS E-Klaim Analytics</h3>
-              <p class="proj-summary">
-                Built around real hospital workflows I work with daily (SIMRS, BPJS Fingerprint Biometrics, and INA-CBG E-Klaim): analyzed 8,400 outpatient &amp; emergency visits (Rp 11.28B billing) to pinpoint morning polyclinic congestion and recover stalled BPJS claims.
-              </p>
-              <div class="metrics-strip">
-                <div class="metric-cell"><div class="m-val mono" style="color:var(--green);">-25.7 min</div><div class="m-lbl">Faster via Biometric Check-In</div></div>
-                <div class="metric-cell"><div class="m-val mono">81.87%</div><div class="m-lbl">BPJS First-Pass Approval</div></div>
-                <div class="metric-cell"><div class="m-val mono" style="color:var(--red);">Rp 1.10B</div><div class="m-lbl">796 Claims in Revision (9.8d)</div></div>
-              </div>
-              <ul class="story-list">
-                <li><span class="story-tag">Problem</span><span>59.7% of patients arrive 07:00–10:00 AM, pushing Cardiology (78.6m) &amp; Internal Med (75.3m) past the 60m SLA.</span></li>
-                <li><span class="story-tag">Solution</span><span>Modeled 8,400 visits in SQLite, compared Biometric vs. Manual counters, and built a live What-If Queue Simulator.</span></li>
-                <li><span class="story-tag">Result</span><span>Proved Biometric Kiosks lift &le;60m SLA from 26.06% to 73.30% and exposed Rp 1.10B in stalled BPJS claims.</span></li>
-              </ul>
-              <div class="tags">
-                <span class="tag">SQL / SQLite</span><span class="tag">SIMRS &amp; INA-CBG Domain</span><span class="tag">What-If Simulator</span><span class="tag">Python</span><span class="tag">Chart.js</span>
-              </div>
-              <div class="proj-actions">
-                <a class="btn btn-primary" href="dashboards/hospital-ops-dashboard.html" target="_blank" rel="noopener noreferrer">Launch Interactive Simulator &amp; Dashboard &nearr;</a>
-                <a class="btn" href="https://github.com/DaffaAhmdhan/hospital-clinical-ops-analytics" target="_blank" rel="noopener noreferrer">GitHub Repo &nearr;</a>
+              <div class="mini-bars">
+                <div class="mini-bar-row"><span class="mono">Cardiology</span><div class="mini-track"><div class="mini-fill" style="width:87%; background:var(--red);"></div></div><span class="mono" style="color:var(--red); font-weight:700;">78.6m</span></div>
+                <div class="mini-bar-row"><span class="mono">Internal Med</span><div class="mini-track"><div class="mini-fill" style="width:83%; background:var(--red);"></div></div><span class="mono" style="color:var(--red); font-weight:700;">75.3m</span></div>
+                <div class="mini-bar-row"><span class="mono">Biometric Avg</span><div class="mini-track"><div class="mini-fill" style="width:51%; background:var(--green);"></div></div><span class="mono" style="color:var(--green); font-weight:700;">46.3m</span></div>
               </div>
             </div>
-
-            <!-- Spotlight Visual Preview Panel -->
-            <div style="display:flex; flex-direction:column; gap:12px; justify-content:space-between;">
-              <div class="proj-visual" style="margin-bottom:0; height:100%; display:flex; flex-direction:column; justify-content:space-between;">
-                <div>
-                  <div class="vis-head mono">
-                    <span><span class="vis-dot" style="background:var(--accent);"></span>LIVE METRIC SNAPSHOT // 60-MIN OUTPATIENT SLA</span>
-                    <span>8,400 VISITS</span>
-                  </div>
-                  <div class="mini-bars" style="margin-top:10px;">
-                    <div class="mini-bar-row"><span class="mono">Cardiology</span><div class="mini-track"><div class="mini-fill" style="width:87%; background:var(--red);"></div></div><span class="mono" style="color:var(--red); font-weight:700;">78.6m</span></div>
-                    <div class="mini-bar-row"><span class="mono">Internal Med</span><div class="mini-track"><div class="mini-fill" style="width:83%; background:var(--red);"></div></div><span class="mono" style="color:var(--red); font-weight:700;">75.3m</span></div>
-                    <div class="mini-bar-row"><span class="mono">Orthopedics</span><div class="mini-track"><div class="mini-fill" style="width:73%; background:var(--amber);"></div></div><span class="mono" style="color:var(--amber); font-weight:700;">66.1m</span></div>
-                    <div class="mini-bar-row"><span class="mono">Pediatrics</span><div class="mini-track"><div class="mini-fill" style="width:64%; background:var(--green);"></div></div><span class="mono" style="color:var(--green); font-weight:700;">57.8m</span></div>
-                    <div class="mini-bar-row"><span class="mono">Radiology</span><div class="mini-track"><div class="mini-fill" style="width:55%; background:var(--green);"></div></div><span class="mono" style="color:var(--green); font-weight:700;">50.2m</span></div>
-                    <div class="mini-bar-row"><span class="mono">Emergency IGD</span><div class="mini-track"><div class="mini-fill" style="width:27%; background:var(--green);"></div></div><span class="mono" style="color:var(--green); font-weight:700;">23.9m</span></div>
-                  </div>
-                </div>
-
-                <div style="margin-top:16px; padding-top:12px; border-top:1px dashed var(--border); display:grid; grid-template-columns:1fr 1fr; gap:10px;">
-                  <div style="background:var(--surface); border:1px solid var(--border); border-radius:8px; padding:10px;">
-                    <div class="mono" style="font-size:10.5px; color:var(--muted);">BPJS BIOMETRIC</div>
-                    <div class="mono" style="font-size:18px; font-weight:800; color:var(--green);">46.28m</div>
-                    <div style="font-size:11px; color:var(--green); font-weight:600;">73.3% within 60m SLA</div>
-                  </div>
-                  <div style="background:var(--surface); border:1px solid var(--border); border-radius:8px; padding:10px;">
-                    <div class="mono" style="font-size:10.5px; color:var(--muted);">MANUAL COUNTER</div>
-                    <div class="mono" style="font-size:18px; font-weight:800; color:var(--red);">71.94m</div>
-                    <div style="font-size:11px; color:var(--red); font-weight:600;">26.1% within 60m SLA</div>
-                  </div>
-                </div>
-              </div>
+            <div class="proj-top">
+              <span class="proj-cat">Data Analyst &bull; Healthcare &amp; BPJS BI</span>
+              <span class="proj-year mono">2026</span>
+            </div>
+            <h3 class="proj-title">01. Hospital Clinical Queue, Biometric Check-In &amp; BPJS E-Klaim Analytics</h3>
+            <p class="proj-summary">
+              Analyzed 8,400 outpatient &amp; emergency visits (Rp 11.28B billing) across 6 hospital departments to pinpoint morning polyclinic congestion and stalled BPJS INA-CBG claims.
+            </p>
+            <div class="metrics-strip">
+              <div class="metric-cell"><div class="m-val mono" style="color:var(--green);">-25.7m</div><div class="m-lbl">Biometric Check-In Speed</div></div>
+              <div class="metric-cell"><div class="m-val mono">81.87%</div><div class="m-lbl">BPJS First-Pass Clear</div></div>
+              <div class="metric-cell"><div class="m-val mono" style="color:var(--red);">Rp 1.10B</div><div class="m-lbl">796 Claims in Revision</div></div>
+            </div>
+            <ul class="story-list">
+              <li><span class="story-tag">Problem</span><span>59.7% of patients arrive 07:00–10:00 AM, pushing Cardiology &amp; Internal Med past 60m SLA.</span></li>
+              <li><span class="story-tag">Solution</span><span>Modeled 8,400 visits in SQLite, compared check-in flows, and built a What-If Queue Simulator.</span></li>
+              <li><span class="story-tag">Result</span><span>Proved Biometric Kiosks lift &le;60m SLA from 26.06% to 73.30% and exposed Rp 1.10B stalled claims.</span></li>
+            </ul>
+            <div class="tags">
+              <span class="tag">SQL / SQLite</span><span class="tag">SIMRS &amp; INA-CBG</span><span class="tag">What-If Simulator</span><span class="tag">Python</span>
             </div>
           </div>
-
-          <details class="case-study">
-            <summary>+ Show Technical Architecture, What-If Model &amp; SQL Query</summary>
-            <div class="case-body">
-              <p><strong>Dashboard Feature:</strong> Includes an interactive JavaScript What-If Simulator letting operations leaders adjust Biometric Kiosk adoption (0–85%) and morning triage staffing (+0–30%) to project real-time SLA compliance gains.</p>
-              <h4>SQL Check-In &amp; E-Klaim Aggregation (sql/clinical_ops_queries.sql)</h4>
-              <pre class="mono">SELECT check_in_method, COUNT(*) AS visits, ROUND(AVG(wait_time_mins), 2) AS avg_wait_mins,
+          <div>
+            <div class="proj-actions">
+              <a class="btn btn-primary" href="dashboards/hospital-ops-dashboard.html" target="_blank" rel="noopener noreferrer">Open Dashboard &nearr;</a>
+              <a class="btn" href="https://github.com/DaffaAhmdhan/hospital-clinical-ops-analytics" target="_blank" rel="noopener noreferrer">GitHub Repo &nearr;</a>
+            </div>
+            <details class="case-study">
+              <summary>+ Show Technical Architecture, What-If Model &amp; SQL Query</summary>
+              <div class="case-body">
+                <p><strong>Interactive Simulator:</strong> Adjusts Biometric Kiosk adoption (0–85%) and morning triage capacity (+0–30%) to project real-time outpatient SLA gains.</p>
+                <pre class="mono">SELECT check_in_method, COUNT(*) AS visits, ROUND(AVG(wait_time_mins), 2) AS avg_wait_mins,
        ROUND(100.0 * SUM(CASE WHEN wait_time_mins &lt;= 60 THEN 1 ELSE 0 END) / COUNT(*), 2) AS sla_60m_pct
 FROM patient_visits GROUP BY check_in_method;</pre>
-            </div>
-          </details>
+              </div>
+            </details>
+          </div>
         </article>
 
         <!-- PROJECT 02 -->
@@ -1234,7 +1194,7 @@ output/*_metrics.json  --&gt;  dashboards/*.html (Chart.js)</pre>
           <pre class="snippet mono"># Serve portfolio + dashboards
 python -m http.server 8085 --directory portfolio
 
-# Re-run flagship Hospital Ops pipeline
+# Re-run Hospital Ops pipeline
 python projects/hospital-clinical-ops-analytics/data/generate_data.py
 python projects/hospital-clinical-ops-analytics/src/run_analysis.py</pre>
           <p style="font-size:14px; margin:12px 0 0;">
