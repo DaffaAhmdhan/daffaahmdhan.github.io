@@ -8,12 +8,13 @@
 
 ## 1. Overview & Redesign Changelog
 
-This portfolio showcases 9 engineering, IT automation, IoT telemetry, research, and Data Analytics projects. It was redesigned from an Indonesian SaaS-style dark template into a clean, **English-first editorial engineering notebook** with:
+This portfolio showcases 10 engineering, IT automation, IoT telemetry, research, and Data Analytics projects. It was redesigned into a bright, **light-first English engineering & data showcase** with:
 
-1. **Humanized First-Person Copy:** Replaced third-person brochure phrasing, neon purple/pink gradients, and blur halos with direct engineering explanations, verified metrics, and concise prose.
-2. **Synchronized Light / Dark Mode Toggle:** Defaults to a bright daylight palette (`#f8fafc` background, `#ffffff` cards, `#2563eb` accent) via `data-theme="light"` persisted in `localStorage.getItem('daffa_theme_v2')`, syncing theme state seamlessly between `portfolio/index.html` and all three standalone dashboards in `portfolio/dashboards/`.
-3. **Interactive Case Studies for All 9 Projects:** Every project card features category filtering, live keyword search, verified KPI strips, and an expandable `<details>` engineering drawer containing architecture notes, SQL/Python/Batch/FSM snippets, and recommendations.
-4. **Updated Repository Links:** Standardized GitHub links to `https://github.com/DaffaAhmdhan/...` matching the active GitHub account.
+1. **Humanized First-Person Copy & Visual Previews:** Replaced text-heavy blocks with a Flagship Spotlight layout, inline visual data previews (Pareto bars, cohort heatmap cells, 24h diurnal curve, live server telemetry widget, provisioning terminal preview, and radar/FSM diagrams), and plain-English *Problem -> Solution -> Result* summaries.
+2. **Synchronized Light / Dark Mode Toggle:** Defaults to a bright daylight palette (`#f8fafc` background, `#ffffff` cards, `#2563eb` accent) via `data-theme="light"` persisted in `localStorage.getItem('daffa_theme_v2')`, syncing theme state seamlessly between `portfolio/index.html` and all four standalone dashboards in `portfolio/dashboards/`.
+3. **Interactive Case Studies for All 10 Projects:** Every project card features category filtering, live keyword search, verified KPI strips, and an expandable `<details>` engineering drawer containing architecture notes, SQL/Python/Batch/FSM snippets, and recommendations.
+4. **Flagship Healthcare Operations & BPJS E-Klaim Simulator:** Added `hospital-clinical-ops-analytics` featuring 8,400 outpatient visits, Biometric vs. Manual Counter SLA analysis, INA-CBG E-Klaim revenue-at-risk tracking, and an interactive What-If staffing/kiosk simulator.
+5. **Updated Repository Links & GitHub Pages Deployment:** Deployed live at https://daffaahmdhan.github.io/ with all project links pointing to `https://github.com/DaffaAhmdhan/...`.
 
 ---
 
@@ -22,16 +23,18 @@ This portfolio showcases 9 engineering, IT automation, IoT telemetry, research, 
 ```text
 cv/
 ├── portfolio/
-│   ├── index.html                           # Main English portfolio with Light/Dark toggle & 9 deep-dive case studies
+│   ├── index.html                           # Main English portfolio with Light/Dark toggle, Flagship Spotlight & 10 deep-dive case studies
 │   ├── DOCUMENTATION.md                     # This architecture & reproduction guide
 │   ├── CV_Daffa_Master_EN.pdf               # Downloadable English CV
 │   ├── CV_Daffa_Master_ID.pdf               # Downloadable Indonesian CV
 │   ├── photo.jpg                            # Profile photo
 │   └── dashboards/
+│       ├── hospital-ops-dashboard.html      # Flagship Dashboard (What-If Queue Simulator + BPJS E-Klaim)
 │       ├── telecom-sla-dashboard.html       # Synced Dashboard 1 (Chart.js + SQL drawer + Analyst Notes)
 │       ├── ecommerce-rfm-dashboard.html     # Synced Dashboard 2 (Cohort Heatmap + RFM + Delivery Impact)
 │       └── iot-telemetry-dashboard.html     # Synced Dashboard 3 (24h Diurnal Curve + Zone Anomaly Matrix)
 └── projects/
+    ├── hospital-clinical-ops-analytics/     # GitHub: DaffaAhmdhan/hospital-clinical-ops-analytics
     ├── telecom-it-sla-analytics/            # GitHub: DaffaAhmdhan/telecom-it-sla-analytics
     ├── ecommerce-cohort-rfm-analytics/      # GitHub: DaffaAhmdhan/ecommerce-cohort-rfm-analytics
     └── iot-telemetry-anomaly-analytics/     # GitHub: DaffaAhmdhan/iot-telemetry-anomaly-analytics
@@ -41,7 +44,7 @@ cv/
 
 ## 3. Data Analytics Pipelines (How It Works)
 
-Each of the three new Data Analytics projects uses a reproducible local Python + SQLite pipeline with zero external package dependencies (standard library `csv`, `sqlite3`, `math`, `json`, `datetime`), ensuring every metric shown in the portfolio is backed by runnable code and SQL queries.
+Each of the four SQL + Python Data Analytics projects uses a reproducible local Python + SQLite pipeline with zero external package dependencies (standard library `csv`, `sqlite3`, `math`, `json`, `datetime`), ensuring every metric shown in the portfolio is backed by runnable code and SQL queries.
 
 ```text
 [1] data/generate_data.py  ──>  [2] data/*.csv (raw records)
@@ -52,6 +55,15 @@ Each of the three new Data Analytics projects uses a reproducible local Python +
                                          ▼
 [4] output/*_metrics.json  ──>  [5] dashboard.html (Chart.js visualization)
 ```
+
+### Flagship Project: Hospital Clinical Queue, Biometric Check-In & BPJS E-Klaim Analytics
+- **GitHub:** https://github.com/DaffaAhmdhan/hospital-clinical-ops-analytics
+- **Local Dashboard:** `portfolio/dashboards/hospital-ops-dashboard.html`
+- **Dataset:** 8,400 outpatient & emergency visits (`May 2026 – Oct 2026`) across 6 hospital departments (`Cardiology`, `Internal Medicine`, `Orthopedics`, `Pediatrics`, `Radiology / DICOM`, `Emergency / IGD`) totaling **Rp 11.28B** in billing.
+- **Verified Outputs (`output/clinical_metrics.json`):**
+  - Morning Peak Congestion: **59.7%** of visits (5,014 / 8,400) arrive 07:00–10:00 AM, pushing **Cardiology (78.62m)** and **Internal Medicine (75.32m)** past the 60-minute Ministry outpatient SLA.
+  - Biometric Check-In Advantage: **BPJS Fingerprint Biometric** averages **46.28 min** (**73.30% <=60m SLA**, **3.70 CSAT**) vs. **Manual Counter** at **71.94 min** (**26.06% <=60m SLA**, **2.79 CSAT**).
+  - BPJS INA-CBG E-Klaim: **81.87%** Approved First-Pass (3.14 days avg), while **13.14%** (**Rp 1.10B**, 796 claims) sit in `Pending / Revision` for **9.83 days**.
 
 ### Project 1: Telecom & IT Service SLA Incident Analytics
 - **GitHub:** https://github.com/DaffaAhmdhan/telecom-it-sla-analytics

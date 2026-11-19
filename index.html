@@ -23,11 +23,14 @@
       --accent-bg: #eff6ff;
       --green: #059669;
       --green-bg: #ecfdf5;
+      --red: #dc2626;
+      --red-bg: #fef2f2;
       --amber: #b45309;
       --amber-bg: #fffbeb;
       --code-bg: #f8fafc;
       --nav-bg: rgba(255, 255, 255, 0.92);
       --shadow: 0 1px 3px rgba(15, 23, 42, 0.06), 0 1px 2px rgba(15, 23, 42, 0.04);
+      --shadow-lg: 0 10px 25px -5px rgba(15, 23, 42, 0.08), 0 4px 10px -4px rgba(15, 23, 42, 0.04);
     }
     :root[data-theme="dark"] {
       --bg: #0f172a;
@@ -43,11 +46,14 @@
       --accent-bg: rgba(96, 165, 250, 0.14);
       --green: #34d399;
       --green-bg: rgba(52, 211, 153, 0.14);
+      --red: #f87171;
+      --red-bg: rgba(248, 113, 113, 0.14);
       --amber: #fbbf24;
       --amber-bg: rgba(251, 191, 36, 0.12);
       --code-bg: #0b1120;
       --nav-bg: rgba(15, 23, 42, 0.90);
       --shadow: 0 2px 6px rgba(0, 0, 0, 0.35);
+      --shadow-lg: 0 12px 28px rgba(0, 0, 0, 0.45);
     }
     * { box-sizing: border-box; }
     body {
@@ -95,7 +101,7 @@
       padding: 8px 14px; border-radius: 8px; font-size: 13px; font-weight: 600;
       border: 1px solid var(--border); background: var(--surface); color: var(--text);
       text-decoration: none; cursor: pointer; box-shadow: var(--shadow);
-      transition: border-color 0.15s, color 0.15s, background 0.15s;
+      transition: border-color 0.15s, color 0.15s, background 0.15s, transform 0.15s;
     }
     .btn:hover { border-color: var(--accent); color: var(--accent); }
     .btn-primary {
@@ -134,7 +140,7 @@
 
     .photo-card {
       background: var(--surface); border: 1px solid var(--border);
-      border-radius: 14px; padding: 14px; box-shadow: var(--shadow);
+      border-radius: 14px; padding: 14px; box-shadow: var(--shadow-lg);
     }
     .photo-card img {
       width: 100%; aspect-ratio: 1 / 1; object-fit: cover; border-radius: 10px; display: block;
@@ -182,17 +188,64 @@
     }
     .search-input:focus { outline: none; border-color: var(--accent); }
 
-    /* Project Grid */
-    .project-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 20px; }
+    /* Project Grid & Flagship Spotlight */
+    .project-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 22px; }
     @media (max-width: 900px) { .project-grid { grid-template-columns: 1fr; } }
 
     .project-card {
       background: var(--surface); border: 1px solid var(--border);
-      border-radius: 14px; padding: 24px; box-shadow: var(--shadow);
+      border-radius: 16px; padding: 22px; box-shadow: var(--shadow);
       display: flex; flex-direction: column; justify-content: space-between;
-      transition: border-color 0.15s, transform 0.15s;
+      transition: border-color 0.2s, box-shadow 0.2s, transform 0.2s;
     }
-    .project-card:hover { border-color: var(--accent); }
+    .project-card:hover { border-color: var(--accent); box-shadow: var(--shadow-lg); transform: translateY(-2px); }
+
+    /* Full-width Flagship Spotlight */
+    .project-card.spotlight {
+      grid-column: 1 / -1;
+      border: 2px solid var(--accent);
+      padding: 26px;
+      box-shadow: var(--shadow-lg);
+    }
+    .spotlight-layout {
+      display: grid; grid-template-columns: 1.15fr 0.85fr; gap: 24px; align-items: stretch;
+    }
+    @media (max-width: 880px) { .spotlight-layout { grid-template-columns: 1fr; } }
+
+    /* Visual Preview Headers */
+    .proj-visual {
+      background: var(--surface-alt);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 12px 14px;
+      margin-bottom: 16px;
+      overflow: hidden;
+    }
+    .vis-head {
+      display: flex; justify-content: space-between; align-items: center;
+      font-size: 11px; color: var(--muted); font-weight: 600; margin-bottom: 8px;
+    }
+    .vis-dot {
+      display: inline-block; width: 7px; height: 7px; border-radius: 50%; margin-right: 5px;
+    }
+
+    /* Mini Bar & Heatmap Visuals */
+    .mini-bars { display: flex; flex-direction: column; gap: 6px; }
+    .mini-bar-row { display: grid; grid-template-columns: 105px 1fr 48px; align-items: center; gap: 8px; font-size: 11px; }
+    .mini-track { height: 8px; border-radius: 99px; background: var(--border); overflow: hidden; }
+    .mini-fill { height: 100%; border-radius: 99px; }
+
+    .mini-heatmap { display: grid; grid-template-columns: repeat(6, 1fr); gap: 4px; }
+    .hm-cell {
+      text-align: center; font-size: 10px; font-weight: 700; padding: 5px 2px; border-radius: 4px;
+      color: var(--text);
+    }
+
+    .terminal-preview {
+      background: #0f172a; color: #e2e8f0; border-radius: 8px; padding: 10px 12px;
+      font-size: 11px; line-height: 1.5; border: 1px solid #334155;
+    }
+
     .proj-top {
       display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center;
       gap: 8px; margin-bottom: 10px;
@@ -201,8 +254,12 @@
       font-size: 11.5px; font-weight: 700; padding: 3px 9px; border-radius: 6px;
       background: var(--accent-bg); color: var(--accent);
     }
+    .proj-cat.flagship {
+      background: var(--accent); color: #ffffff;
+    }
     .proj-year { font-size: 12.5px; color: var(--muted); font-weight: 600; }
     .proj-title { font-size: 19px; font-weight: 700; margin: 0 0 8px; line-height: 1.3; }
+    .spotlight .proj-title { font-size: 22px; font-weight: 800; }
     .proj-summary { font-size: 14.5px; color: var(--body); margin: 0 0 16px; }
 
     /* 3 Key Metrics Strip */
@@ -301,7 +358,7 @@
 
       <nav class="nav-links">
         <a href="#overview">Overview</a>
-        <a href="#projects">Projects (9)</a>
+        <a href="#projects">Projects (10)</a>
         <a href="#experience">Experience</a>
         <a href="#skills">Skills</a>
         <a href="#research">Education &amp; Papers</a>
@@ -339,12 +396,12 @@
           <ul class="hero-bullets">
             <li><span>&bull;</span><span><strong>Education:</strong> B.Eng. in Computer Engineering, Telkom University (GPA 3.68 / 4.00, Cum Laude).</span></li>
             <li><span>&bull;</span><span><strong>Current Role:</strong> IT Support &amp; Automation at <strong>RS Fatmawati Hospital</strong> (Jakarta) — supporting 24/7 clinical systems and building server-room IoT monitoring.</span></li>
-            <li><span>&bull;</span><span><strong>Data Analytics Focus:</strong> Using <strong>SQL, BigQuery, Python, and interactive dashboards</strong> to diagnose SLA bottlenecks, customer retention, and energy anomalies.</span></li>
+            <li><span>&bull;</span><span><strong>Data Analytics Focus:</strong> Using <strong>SQL, BigQuery, Python, and interactive dashboards</strong> to diagnose hospital queues, SLA bottlenecks, customer retention, and energy anomalies.</span></li>
           </ul>
 
           <div style="display:flex; flex-wrap:wrap; gap:10px;">
-            <a href="#projects" class="btn btn-primary">Browse 9 Projects</a>
-            <a href="#documentation" class="btn">How This Portfolio Works</a>
+            <a href="#projects" class="btn btn-primary">Explore 10 Projects</a>
+            <a href="dashboards/hospital-ops-dashboard.html" target="_blank" rel="noopener noreferrer" class="btn">Try Flagship Hospital Simulator &nearr;</a>
             <a href="https://www.linkedin.com/in/daffa-ahmadhan-khusumah" target="_blank" rel="noopener noreferrer" class="btn">LinkedIn &nearr;</a>
             <a href="mailto:daffaahmadhan@gmail.com" class="btn">Email Me</a>
           </div>
@@ -373,7 +430,7 @@
         <div class="pillar-card">
           <span class="pillar-badge">01 &bull; Data Analytics &amp; BI</span>
           <h3>From Raw Logs to Clear Answers</h3>
-          <p>I clean messy CSV and database records using SQL and Python, model star schemas, run cohort/RFM and Pareto analyses, and build interactive dashboards that explain <em>why</em> a metric moved and <em>what</em> to fix next.</p>
+          <p>I clean messy CSV and database records using SQL and Python, model star schemas, run cohort/RFM and Pareto analyses, and build interactive dashboards &amp; What-If simulators that show <em>what</em> to fix next.</p>
         </div>
         <div class="pillar-card">
           <span class="pillar-badge">02 &bull; IT Support &amp; Automation</span>
@@ -388,160 +445,279 @@
       </div>
     </section>
 
-    <!-- Projects & Case Studies -->
+    <!-- Projects & Visual Showcase -->
     <section id="projects" class="block">
       <div class="section-head">
         <div class="kicker">Portfolio Projects</div>
-        <h2>9 Projects — Problem, Solution &amp; Verified Results</h2>
+        <h2>10 Projects — Interactive Previews, Problem &amp; Results</h2>
         <p>
-          Each card starts with a plain-English summary so anyone can read it in 15 seconds. Click <strong>"Show Technical Architecture &amp; SQL / Code"</strong> inside any card to inspect the underlying implementation.
+          Every card opens with a visual preview of the data or system output, a plain-English <strong>Problem &rarr; Solution &rarr; Result</strong> breakdown, and an expandable technical drawer for SQL/Python details.
         </p>
       </div>
 
       <div class="controls">
         <div class="filter-tabs" id="filterTabs">
-          <button class="tab-btn active" onclick="filterProjects('all', this)">All Projects (9)</button>
-          <button class="tab-btn" onclick="filterProjects('data', this)">Data Analytics &amp; BI (5)</button>
+          <button class="tab-btn active" onclick="filterProjects('all', this)">All Projects (10)</button>
+          <button class="tab-btn" onclick="filterProjects('data', this)">Data Analytics &amp; BI (6)</button>
           <button class="tab-btn" onclick="filterProjects('iot', this)">IoT &amp; Hardware (2)</button>
           <button class="tab-btn" onclick="filterProjects('it', this)">IT Automation (1)</button>
           <button class="tab-btn" onclick="filterProjects('research', this)">AI Research (1)</button>
         </div>
         <div style="display:flex; gap:8px; align-items:center; flex-wrap:wrap;">
-          <input type="text" id="projectSearch" class="search-input" placeholder="Search (e.g. SQL, RFM, IoT, Python)..." oninput="applySearch()" />
+          <input type="text" id="projectSearch" class="search-input" placeholder="Search (e.g. BPJS, SQL, RFM, IoT)..." oninput="applySearch()" />
           <button class="btn" type="button" onclick="toggleAllDetails()">Expand / Collapse All</button>
         </div>
       </div>
 
       <div class="project-grid" id="projectsGrid">
 
-        <!-- PROJECT 1 -->
+        <!-- FLAGSHIP PROJECT 01 (FULL-WIDTH SPOTLIGHT) -->
+        <article class="project-card spotlight" data-category="data">
+          <div class="spotlight-layout">
+            <div>
+              <div class="proj-top">
+                <span class="proj-cat flagship">&#9733; Flagship Project &bull; Healthcare Ops &amp; BPJS E-Klaim BI</span>
+                <span class="proj-year mono">2026</span>
+              </div>
+              <h3 class="proj-title">01. Hospital Clinical Queue, Biometric Check-In &amp; BPJS E-Klaim Analytics</h3>
+              <p class="proj-summary">
+                Built around real hospital workflows I work with daily (SIMRS, BPJS Fingerprint Biometrics, and INA-CBG E-Klaim): analyzed 8,400 outpatient &amp; emergency visits (Rp 11.28B billing) to pinpoint morning polyclinic congestion and recover stalled BPJS claims.
+              </p>
+              <div class="metrics-strip">
+                <div class="metric-cell"><div class="m-val mono" style="color:var(--green);">-25.7 min</div><div class="m-lbl">Faster via Biometric Check-In</div></div>
+                <div class="metric-cell"><div class="m-val mono">81.87%</div><div class="m-lbl">BPJS First-Pass Approval</div></div>
+                <div class="metric-cell"><div class="m-val mono" style="color:var(--red);">Rp 1.10B</div><div class="m-lbl">796 Claims in Revision (9.8d)</div></div>
+              </div>
+              <ul class="story-list">
+                <li><span class="story-tag">Problem</span><span>59.7% of patients arrive 07:00–10:00 AM, pushing Cardiology (78.6m) &amp; Internal Med (75.3m) past the 60m SLA.</span></li>
+                <li><span class="story-tag">Solution</span><span>Modeled 8,400 visits in SQLite, compared Biometric vs. Manual counters, and built a live What-If Queue Simulator.</span></li>
+                <li><span class="story-tag">Result</span><span>Proved Biometric Kiosks lift &le;60m SLA from 26.06% to 73.30% and exposed Rp 1.10B in stalled BPJS claims.</span></li>
+              </ul>
+              <div class="tags">
+                <span class="tag">SQL / SQLite</span><span class="tag">SIMRS &amp; INA-CBG Domain</span><span class="tag">What-If Simulator</span><span class="tag">Python</span><span class="tag">Chart.js</span>
+              </div>
+              <div class="proj-actions">
+                <a class="btn btn-primary" href="dashboards/hospital-ops-dashboard.html" target="_blank" rel="noopener noreferrer">Launch Interactive Simulator &amp; Dashboard &nearr;</a>
+                <a class="btn" href="https://github.com/DaffaAhmdhan/hospital-clinical-ops-analytics" target="_blank" rel="noopener noreferrer">GitHub Repo &nearr;</a>
+              </div>
+            </div>
+
+            <!-- Spotlight Visual Preview Panel -->
+            <div style="display:flex; flex-direction:column; gap:12px; justify-content:space-between;">
+              <div class="proj-visual" style="margin-bottom:0; height:100%; display:flex; flex-direction:column; justify-content:space-between;">
+                <div>
+                  <div class="vis-head mono">
+                    <span><span class="vis-dot" style="background:var(--accent);"></span>LIVE METRIC SNAPSHOT // 60-MIN OUTPATIENT SLA</span>
+                    <span>8,400 VISITS</span>
+                  </div>
+                  <div class="mini-bars" style="margin-top:10px;">
+                    <div class="mini-bar-row"><span class="mono">Cardiology</span><div class="mini-track"><div class="mini-fill" style="width:87%; background:var(--red);"></div></div><span class="mono" style="color:var(--red); font-weight:700;">78.6m</span></div>
+                    <div class="mini-bar-row"><span class="mono">Internal Med</span><div class="mini-track"><div class="mini-fill" style="width:83%; background:var(--red);"></div></div><span class="mono" style="color:var(--red); font-weight:700;">75.3m</span></div>
+                    <div class="mini-bar-row"><span class="mono">Orthopedics</span><div class="mini-track"><div class="mini-fill" style="width:73%; background:var(--amber);"></div></div><span class="mono" style="color:var(--amber); font-weight:700;">66.1m</span></div>
+                    <div class="mini-bar-row"><span class="mono">Pediatrics</span><div class="mini-track"><div class="mini-fill" style="width:64%; background:var(--green);"></div></div><span class="mono" style="color:var(--green); font-weight:700;">57.8m</span></div>
+                    <div class="mini-bar-row"><span class="mono">Radiology</span><div class="mini-track"><div class="mini-fill" style="width:55%; background:var(--green);"></div></div><span class="mono" style="color:var(--green); font-weight:700;">50.2m</span></div>
+                    <div class="mini-bar-row"><span class="mono">Emergency IGD</span><div class="mini-track"><div class="mini-fill" style="width:27%; background:var(--green);"></div></div><span class="mono" style="color:var(--green); font-weight:700;">23.9m</span></div>
+                  </div>
+                </div>
+
+                <div style="margin-top:16px; padding-top:12px; border-top:1px dashed var(--border); display:grid; grid-template-columns:1fr 1fr; gap:10px;">
+                  <div style="background:var(--surface); border:1px solid var(--border); border-radius:8px; padding:10px;">
+                    <div class="mono" style="font-size:10.5px; color:var(--muted);">BPJS BIOMETRIC</div>
+                    <div class="mono" style="font-size:18px; font-weight:800; color:var(--green);">46.28m</div>
+                    <div style="font-size:11px; color:var(--green); font-weight:600;">73.3% within 60m SLA</div>
+                  </div>
+                  <div style="background:var(--surface); border:1px solid var(--border); border-radius:8px; padding:10px;">
+                    <div class="mono" style="font-size:10.5px; color:var(--muted);">MANUAL COUNTER</div>
+                    <div class="mono" style="font-size:18px; font-weight:800; color:var(--red);">71.94m</div>
+                    <div style="font-size:11px; color:var(--red); font-weight:600;">26.1% within 60m SLA</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <details class="case-study">
+            <summary>+ Show Technical Architecture, What-If Model &amp; SQL Query</summary>
+            <div class="case-body">
+              <p><strong>Dashboard Feature:</strong> Includes an interactive JavaScript What-If Simulator letting operations leaders adjust Biometric Kiosk adoption (0–85%) and morning triage staffing (+0–30%) to project real-time SLA compliance gains.</p>
+              <h4>SQL Check-In &amp; E-Klaim Aggregation (sql/clinical_ops_queries.sql)</h4>
+              <pre class="mono">SELECT check_in_method, COUNT(*) AS visits, ROUND(AVG(wait_time_mins), 2) AS avg_wait_mins,
+       ROUND(100.0 * SUM(CASE WHEN wait_time_mins &lt;= 60 THEN 1 ELSE 0 END) / COUNT(*), 2) AS sla_60m_pct
+FROM patient_visits GROUP BY check_in_method;</pre>
+            </div>
+          </details>
+        </article>
+
+        <!-- PROJECT 02 -->
         <article class="project-card" data-category="data">
           <div>
+            <div class="proj-visual">
+              <div class="vis-head mono">
+                <span><span class="vis-dot" style="background:var(--red);"></span>PARETO BREACH CONCENTRATION</span>
+                <span>5 CAUSES = 80.87%</span>
+              </div>
+              <svg viewBox="0 0 320 62" width="100%" height="62" aria-label="Pareto SLA chart preview">
+                <rect x="8" y="14" width="38" height="42" rx="3" fill="#2563eb" opacity="0.85"></rect>
+                <rect x="54" y="22" width="38" height="34" rx="3" fill="#2563eb" opacity="0.7"></rect>
+                <rect x="100" y="28" width="38" height="28" rx="3" fill="#2563eb" opacity="0.55"></rect>
+                <rect x="146" y="31" width="38" height="25" rx="3" fill="#2563eb" opacity="0.45"></rect>
+                <rect x="192" y="38" width="38" height="18" rx="3" fill="#2563eb" opacity="0.35"></rect>
+                <rect x="238" y="40" width="38" height="16" rx="3" fill="#64748b" opacity="0.35"></rect>
+                <polyline fill="none" stroke="#dc2626" stroke-width="2.5" points="27,44 73,33 119,24 165,17 211,12 257,8 302,6" />
+                <circle cx="211" cy="12" r="3.5" fill="#dc2626" />
+              </svg>
+            </div>
             <div class="proj-top">
               <span class="proj-cat">Data Analyst &bull; Operational BI</span>
               <span class="proj-year mono">2026</span>
             </div>
-            <h3 class="proj-title">01. Telecom &amp; IT Service SLA Incident Analytics</h3>
+            <h3 class="proj-title">02. Telecom &amp; IT Service SLA Incident Analytics</h3>
             <p class="proj-summary">
-              Analyzed 5,000 IT and network support tickets over 12 months to find out why 1 in 5 tickets missed their service-level deadline (SLA) and which regions or root causes were slowing teams down.
+              Analyzed 5,000 IT and network support tickets over 12 months to uncover why 1 in 5 tickets missed SLA deadlines and which regions slowed teams down.
             </p>
             <div class="metrics-strip">
-              <div class="metric-cell"><div class="m-val mono">79.3%</div><div class="m-lbl">SLA Compliance (5,000 tickets)</div></div>
-              <div class="metric-cell"><div class="m-val mono">16.41h</div><div class="m-lbl">Avg Resolution Time (MTTR)</div></div>
-              <div class="metric-cell"><div class="m-val mono">80.87%</div><div class="m-lbl">Breaches from Top 5 Causes</div></div>
+              <div class="metric-cell"><div class="m-val mono">79.3%</div><div class="m-lbl">SLA Compliance</div></div>
+              <div class="metric-cell"><div class="m-val mono">16.41h</div><div class="m-lbl">Avg MTTR</div></div>
+              <div class="metric-cell"><div class="m-val mono">80.87%</div><div class="m-lbl">Top 5 Root Causes</div></div>
             </div>
             <ul class="story-list">
-              <li><span class="story-tag">Problem</span><span>SLA compliance sat at 79.3% (below the 90% goal), with unclear root causes across 5 cities.</span></li>
-              <li><span class="story-tag">Solution</span><span>Built a SQLite star schema, ran SQL Pareto 80/20 &amp; MoM window queries, and built an interactive Chart.js dashboard.</span></li>
-              <li><span class="story-tag">Result</span><span>Pinpointed Sukabumi dispatch delays (74.17% SLA) and Fiber/Power outages (41.35% of all breaches).</span></li>
+              <li><span class="story-tag">Problem</span><span>SLA compliance sat at 79.3% (below 90% target) across 5 West Java/Jabodetabek cities.</span></li>
+              <li><span class="story-tag">Solution</span><span>Built a SQLite star schema, SQL Pareto 80/20 &amp; MoM window queries, and Chart.js dashboard.</span></li>
+              <li><span class="story-tag">Result</span><span>Isolated Sukabumi dispatch lag (74.17% SLA) and Fiber/Power cuts (41.35% of breaches).</span></li>
             </ul>
             <div class="tags">
-              <span class="tag">SQL / SQLite</span><span class="tag">Star Schema</span><span class="tag">Python</span><span class="tag">Pareto 80/20</span><span class="tag">Chart.js</span>
+              <span class="tag">SQL / SQLite</span><span class="tag">Star Schema</span><span class="tag">Python</span><span class="tag">Pareto 80/20</span>
             </div>
           </div>
           <div>
             <div class="proj-actions">
-              <a class="btn btn-primary" href="dashboards/telecom-sla-dashboard.html" target="_blank" rel="noopener noreferrer">Open Interactive Dashboard &nearr;</a>
+              <a class="btn btn-primary" href="dashboards/telecom-sla-dashboard.html" target="_blank" rel="noopener noreferrer">Open Dashboard &nearr;</a>
               <a class="btn" href="https://github.com/DaffaAhmdhan/telecom-it-sla-analytics" target="_blank" rel="noopener noreferrer">GitHub Repo &nearr;</a>
             </div>
             <details class="case-study">
               <summary>+ Show Technical Architecture &amp; SQL Query</summary>
               <div class="case-body">
-                <p><strong>Key Insight:</strong> P2 - High tickets actually breached SLA more often (77.13%, 292 breaches) than P1 - Critical (83.87%), showing teams triage P1 fast while P2 queues silently cross their 8-hour threshold.</p>
-                <h4>Pareto 80/20 SQL Query (sql/schema_and_kpis.sql)</h4>
+                <p><strong>Key Insight:</strong> P2 - High tickets breached SLA more often (77.13%, 292 breaches) than P1 - Critical (83.87%) because teams triage P1 fast while P2 queues cross their 8-hour window.</p>
                 <pre class="mono">WITH breach_counts AS (
-    SELECT root_cause, COUNT(*) AS breach_count
-    FROM fact_tickets WHERE sla_met = 0 GROUP BY root_cause
-),
-total_breaches AS (SELECT SUM(breach_count) AS total FROM breach_counts)
-SELECT b.root_cause, b.breach_count,
-  ROUND(100.0 * SUM(b.breach_count) OVER (ORDER BY b.breach_count DESC) / t.total, 2) AS cumulative_pct
-FROM breach_counts b CROSS JOIN total_breaches t ORDER BY b.breach_count DESC;</pre>
+    SELECT root_cause, COUNT(*) AS breach_count FROM fact_tickets WHERE sla_met = 0 GROUP BY root_cause
+), total_breaches AS (SELECT SUM(breach_count) AS total FROM breach_counts)
+SELECT b.root_cause, ROUND(100.0 * SUM(b.breach_count) OVER (ORDER BY b.breach_count DESC) / t.total, 2) AS cum_pct
+FROM breach_counts b CROSS JOIN total_breaches t;</pre>
               </div>
             </details>
           </div>
         </article>
 
-        <!-- PROJECT 2 -->
+        <!-- PROJECT 03 -->
         <article class="project-card" data-category="data">
           <div>
+            <div class="proj-visual">
+              <div class="vis-head mono">
+                <span><span class="vis-dot" style="background:var(--accent);"></span>COHORT RETENTION HEATMAP (M0–M5)</span>
+                <span>RP 4.18B GMV</span>
+              </div>
+              <div class="mini-heatmap mono">
+                <div class="hm-cell" style="background:rgba(37,99,235,0.45);">100%</div>
+                <div class="hm-cell" style="background:rgba(37,99,235,0.18);">33.3%</div>
+                <div class="hm-cell" style="background:rgba(37,99,235,0.24);">44.1%</div>
+                <div class="hm-cell" style="background:rgba(37,99,235,0.16);">30.0%</div>
+                <div class="hm-cell" style="background:rgba(37,99,235,0.15);">29.1%</div>
+                <div class="hm-cell" style="background:rgba(37,99,235,0.11);">21.6%</div>
+                <div class="hm-cell" style="background:rgba(37,99,235,0.45);">100%</div>
+                <div class="hm-cell" style="background:rgba(37,99,235,0.22);">41.3%</div>
+                <div class="hm-cell" style="background:rgba(37,99,235,0.24);">43.2%</div>
+                <div class="hm-cell" style="background:rgba(37,99,235,0.21);">39.4%</div>
+                <div class="hm-cell" style="background:rgba(37,99,235,0.14);">26.8%</div>
+                <div class="hm-cell" style="background:rgba(37,99,235,0.13);">23.9%</div>
+              </div>
+            </div>
             <div class="proj-top">
-              <span class="proj-cat">Data Analyst &bull; Customer &amp; Revenue BI</span>
+              <span class="proj-cat">Data Analyst &bull; Customer BI</span>
               <span class="proj-year mono">2026</span>
             </div>
-            <h3 class="proj-title">02. E-Commerce Cohort Retention &amp; RFM Segmentation</h3>
+            <h3 class="proj-title">03. E-Commerce Cohort Retention &amp; RFM Segmentation</h3>
             <p class="proj-summary">
-              Evaluated 6,581 online orders (Rp 4.18B revenue) across 2,400 customers to identify who generates repeat revenue, which buyers are slipping away, and how shipping delays hurt customer ratings.
+              Evaluated 6,581 online orders (Rp 4.18B) across 2,400 customers to segment top-value buyers, find churn risk, and quantify how late shipping damages reviews.
             </p>
             <div class="metrics-strip">
-              <div class="metric-cell"><div class="m-val mono">Rp 4.18B</div><div class="m-lbl">Revenue (6,581 orders)</div></div>
-              <div class="metric-cell"><div class="m-val mono">79.2%</div><div class="m-lbl">Rev from Champions &amp; Loyal</div></div>
-              <div class="metric-cell"><div class="m-val mono">4.25 &rarr; 2.45&#9733;</div><div class="m-lbl">Rating Drop on Late Orders</div></div>
+              <div class="metric-cell"><div class="m-val mono">Rp 4.18B</div><div class="m-lbl">6,581 Orders</div></div>
+              <div class="metric-cell"><div class="m-val mono">79.2%</div><div class="m-lbl">Champions + Loyal Rev</div></div>
+              <div class="metric-cell"><div class="m-val mono">4.25&rarr;2.45&#9733;</div><div class="m-lbl">Late Rating Drop</div></div>
             </div>
             <ul class="story-list">
-              <li><span class="story-tag">Problem</span><span>Management lacked visibility into customer repeat behavior and why low 1–2 star reviews spiked.</span></li>
-              <li><span class="story-tag">Solution</span><span>Built a 12-month cohort retention matrix, RFM quantile segmentation in Python, and delivery SLA SQL checks.</span></li>
-              <li><span class="story-tag">Result</span><span>Found 274 At-Risk buyers (Rp 432.6M pool) and proved late shipping jumps 1–2&#9733; ratings from 6.38% to 55.1%.</span></li>
+              <li><span class="story-tag">Problem</span><span>Teams lacked visibility into repeat-purchase decay and why 1–2 star reviews spiked.</span></li>
+              <li><span class="story-tag">Solution</span><span>Built a 12-month cohort matrix, Python RFM quantiles, and delivery SLA SQL analysis.</span></li>
+              <li><span class="story-tag">Result</span><span>Found 274 At-Risk buyers (Rp 432.6M) and proved late shipping jumps low ratings to 55.1%.</span></li>
             </ul>
             <div class="tags">
-              <span class="tag">Python</span><span class="tag">SQLite / SQL</span><span class="tag">Cohort Heatmap</span><span class="tag">RFM Quantiles</span><span class="tag">Chart.js</span>
+              <span class="tag">Python</span><span class="tag">SQLite / SQL</span><span class="tag">Cohort Matrix</span><span class="tag">RFM Quantiles</span>
             </div>
           </div>
           <div>
             <div class="proj-actions">
-              <a class="btn btn-primary" href="dashboards/ecommerce-rfm-dashboard.html" target="_blank" rel="noopener noreferrer">Open Interactive Dashboard &nearr;</a>
+              <a class="btn btn-primary" href="dashboards/ecommerce-rfm-dashboard.html" target="_blank" rel="noopener noreferrer">Open Dashboard &nearr;</a>
               <a class="btn" href="https://github.com/DaffaAhmdhan/ecommerce-cohort-rfm-analytics" target="_blank" rel="noopener noreferrer">GitHub Repo &nearr;</a>
             </div>
             <details class="case-study">
               <summary>+ Show Technical Architecture &amp; SQL Query</summary>
               <div class="case-body">
-                <p><strong>Segment Breakdown:</strong> Champions (12.0% of customers) drive 30.7% of revenue (avg 5.48 orders every 37.8 days). Loyal Customers (47.7%) add 48.5% of revenue.</p>
-                <h4>RFM Customer Aggregation Query (sql/cohort_and_rfm.sql)</h4>
+                <p><strong>Segment Breakdown:</strong> Champions (12.0%) generate 30.7% of revenue (5.48 avg orders, 37.8d recency).</p>
                 <pre class="mono">SELECT customer_id,
   CAST(julianday('2026-11-01') - julianday(MAX(order_date)) AS INTEGER) AS recency_days,
-  COUNT(order_id) AS frequency,
-  SUM(order_value_idr) AS monetary_idr
+  COUNT(order_id) AS frequency, SUM(order_value_idr) AS monetary_idr
 FROM orders GROUP BY customer_id;</pre>
               </div>
             </details>
           </div>
         </article>
 
-        <!-- PROJECT 3 -->
+        <!-- PROJECT 04 -->
         <article class="project-card" data-category="data">
           <div>
+            <div class="proj-visual">
+              <div class="vis-head mono">
+                <span><span class="vis-dot" style="background:var(--green);"></span>24H DIURNAL LOAD &amp; ANOMALY PINS</span>
+                <span>120 ANOMALIES</span>
+              </div>
+              <svg viewBox="0 0 320 62" width="100%" height="62" aria-label="IoT power curve preview">
+                <path d="M0,48 L95,48 L95,18 L225,18 L225,48 L320,48 L320,62 L0,62 Z" fill="rgba(37,99,235,0.12)" />
+                <polyline fill="none" stroke="#2563eb" stroke-width="2.2" points="0,48 95,48 95,18 225,18 225,48 320,48" />
+                <polyline fill="none" stroke="#059669" stroke-width="2" stroke-dasharray="4 3" points="0,42 75,35 155,22 240,32 320,42" />
+                <circle cx="145" cy="14" r="4" fill="#dc2626" />
+                <circle cx="195" cy="12" r="4" fill="#dc2626" />
+              </svg>
+            </div>
             <div class="proj-top">
               <span class="proj-cat">Data Analyst &bull; IoT Time-Series</span>
               <span class="proj-year mono">2026</span>
             </div>
-            <h3 class="proj-title">03. IoT Environmental &amp; Energy Telemetry Analytics</h3>
+            <h3 class="proj-title">04. IoT Environmental &amp; Energy Telemetry Analytics</h3>
             <p class="proj-summary">
-              Processed 17,280 hourly sensor logs across 4 facility rooms over 180 days to catch dangerous server-room overheating events early and calculate daytime electricity cost savings.
+              Processed 17,280 hourly sensor logs across 4 facility rooms over 180 days to catch overheating anomalies and quantify daytime peak electricity savings.
             </p>
             <div class="metrics-strip">
-              <div class="metric-cell"><div class="m-val mono">57,154 kWh</div><div class="m-lbl">Power Tracked (Rp 82.57M)</div></div>
-              <div class="metric-cell"><div class="m-val mono">120</div><div class="m-lbl">Z-Score Thermal Anomalies</div></div>
-              <div class="metric-cell"><div class="m-val mono">Rp 4.62M</div><div class="m-lbl">6-Mo Peak-Shift Savings</div></div>
+              <div class="metric-cell"><div class="m-val mono">57,154 kWh</div><div class="m-lbl">Rp 82.57M Power</div></div>
+              <div class="metric-cell"><div class="m-val mono">120</div><div class="m-lbl">Z-Score Anomalies</div></div>
+              <div class="metric-cell"><div class="m-val mono">Rp 4.62M</div><div class="m-lbl">6-Mo Peak Savings</div></div>
             </div>
             <ul class="story-list">
-              <li><span class="story-tag">Problem</span><span>HVAC spikes and server-room heat anomalies went undetected until temperatures crossed hard limits.</span></li>
-              <li><span class="story-tag">Solution</span><span>Built a 24-hour SQL diurnal load profile and Python statistical Z-score detector (|z| &gt; 2.5) across 4 zones.</span></li>
-              <li><span class="story-tag">Result</span><span>Detected 120 anomalies (max 31.32&deg;C) and showed off-peak pre-cooling saves Rp 4.62M per 6 months.</span></li>
+              <li><span class="story-tag">Problem</span><span>HVAC spikes and server heat anomalies went unnoticed until breaching hard thresholds.</span></li>
+              <li><span class="story-tag">Solution</span><span>Built 24h SQL diurnal profiling and Python Z-score anomaly detection (|z| &gt; 2.5).</span></li>
+              <li><span class="story-tag">Result</span><span>Caught 120 thermal spikes (31.32&deg;C) and identified Rp 4.62M/semester pre-cooling savings.</span></li>
             </ul>
             <div class="tags">
-              <span class="tag">Time-Series ETL</span><span class="tag">Z-Score Statistics</span><span class="tag">SQL</span><span class="tag">Python</span><span class="tag">Energy BI</span>
+              <span class="tag">Time-Series ETL</span><span class="tag">Z-Score Stats</span><span class="tag">SQL</span><span class="tag">Python</span>
             </div>
           </div>
           <div>
             <div class="proj-actions">
-              <a class="btn btn-primary" href="dashboards/iot-telemetry-dashboard.html" target="_blank" rel="noopener noreferrer">Open Interactive Dashboard &nearr;</a>
+              <a class="btn btn-primary" href="dashboards/iot-telemetry-dashboard.html" target="_blank" rel="noopener noreferrer">Open Dashboard &nearr;</a>
               <a class="btn" href="https://github.com/DaffaAhmdhan/iot-telemetry-anomaly-analytics" target="_blank" rel="noopener noreferrer">GitHub Repo &nearr;</a>
             </div>
             <details class="case-study">
               <summary>+ Show Technical Architecture &amp; Python Logic</summary>
               <div class="case-body">
-                <p><strong>Key Insight:</strong> Server Rooms A &amp; B consume 62.8% of total electricity (35,897.8 kWh). Daytime power (09:00–17:00) jumps 45.9% from 2.822 kW to 4.117 kW.</p>
-                <h4>Per-Zone Z-Score Anomaly Flagging (src/run_analysis.py)</h4>
+                <p>Server Rooms A &amp; B draw 62.8% of power; daytime draw jumps 45.9% (4.117 vs 2.822 kW).</p>
                 <pre class="mono">mean_t = sum(vals) / len(vals)
 std_t = math.sqrt(sum((v - mean_t) ** 2 for v in vals) / len(vals))
 anomalies = [x for x in series if std_t &gt; 0 and abs(x[1] - mean_t) / std_t &gt; 2.5]</pre>
@@ -550,29 +726,49 @@ anomalies = [x for x in series if std_t &gt; 0 and abs(x[1] - mean_t) / std_t &g
           </div>
         </article>
 
-        <!-- PROJECT 4 -->
+        <!-- PROJECT 05 -->
         <article class="project-card" data-category="iot">
           <div>
+            <div class="proj-visual">
+              <div class="vis-head mono">
+                <span><span class="vis-dot" style="background:var(--green);"></span>LIVE SERVER ROOM TELEMETRY // RS FATMAWATI</span>
+                <span>ONLINE</span>
+              </div>
+              <div style="display:grid; grid-template-columns:repeat(3,1fr); gap:8px;">
+                <div style="background:var(--surface); border:1px solid var(--border); border-radius:6px; padding:8px; text-align:center;">
+                  <div class="mono" style="font-size:10px; color:var(--muted);">SHT31 TEMP</div>
+                  <div class="mono" style="font-size:16px; font-weight:800; color:var(--green);">20.8&deg;C</div>
+                </div>
+                <div style="background:var(--surface); border:1px solid var(--border); border-radius:6px; padding:8px; text-align:center;">
+                  <div class="mono" style="font-size:10px; color:var(--muted);">HUMIDITY</div>
+                  <div class="mono" style="font-size:16px; font-weight:800; color:var(--accent);">48.2%</div>
+                </div>
+                <div style="background:var(--surface); border:1px solid var(--border); border-radius:6px; padding:8px; text-align:center;">
+                  <div class="mono" style="font-size:10px; color:var(--muted);">BOT TICKET</div>
+                  <div class="mono" style="font-size:14px; font-weight:800; color:var(--text);">#TCK OK</div>
+                </div>
+              </div>
+            </div>
             <div class="proj-top">
               <span class="proj-cat">IoT &amp; Production Ops &bull; RS Fatmawati</span>
               <span class="proj-year mono">2026</span>
             </div>
-            <h3 class="proj-title">04. Hospital Server Room IoT Monitor &amp; Telegram Bot (#TCK)</h3>
+            <h3 class="proj-title">05. Hospital Server Room IoT Monitor &amp; Telegram Bot (#TCK)</h3>
             <p class="proj-summary">
-              Live hardware-to-cloud monitoring system built for RS Fatmawati's hospital server room. Tracks temperature and humidity 24/7 and automatically dispatches Telegram incident tickets to technicians.
+              Live hardware-to-cloud monitoring built for RS Fatmawati's server room, tracking temperature/humidity 24/7 and dispatching photo-verified Telegram tickets.
             </p>
             <div class="metrics-strip">
               <div class="metric-cell"><div class="m-val mono">24/7 Live</div><div class="m-lbl">Continuous Telemetry</div></div>
-              <div class="metric-cell"><div class="m-val mono">30 Years</div><div class="m-lbl">SQL Daily Rollup Retention</div></div>
-              <div class="metric-cell"><div class="m-val mono">#TCK Bot</div><div class="m-lbl">Photo-Verified Ticket Close</div></div>
+              <div class="metric-cell"><div class="m-val mono">30 Years</div><div class="m-lbl">SQL Daily Rollup</div></div>
+              <div class="metric-cell"><div class="m-val mono">#TCK Bot</div><div class="m-lbl">Photo-Verified Close</div></div>
             </div>
             <ul class="story-list">
-              <li><span class="story-tag">Problem</span><span>Server room AC faults risked clinical downtime if no one walked in to check the room thermometer.</span></li>
-              <li><span class="story-tag">Solution</span><span>Wired ESP8266 + SHT31 sensor to Next.js &amp; Supabase SQL, paired with a two-way Telegram incident bot.</span></li>
-              <li><span class="story-tag">Result</span><span>Instant threshold alerts with accountability: tickets stay open until a technician uploads fix-proof photo.</span></li>
+              <li><span class="story-tag">Problem</span><span>AC faults risked clinical downtime if no one manually checked the server room thermometer.</span></li>
+              <li><span class="story-tag">Solution</span><span>Wired ESP8266 + SHT31 to Next.js &amp; Supabase SQL with a two-way Telegram incident bot.</span></li>
+              <li><span class="story-tag">Result</span><span>Real-time alerts where tickets stay open until technicians reply with on-site photo proof.</span></li>
             </ul>
             <div class="tags">
-              <span class="tag">ESP8266</span><span class="tag">SHT31 Sensor</span><span class="tag">Next.js</span><span class="tag">Supabase SQL</span><span class="tag">Telegram API</span>
+              <span class="tag">ESP8266</span><span class="tag">SHT31</span><span class="tag">Next.js</span><span class="tag">Supabase SQL</span><span class="tag">Telegram API</span>
             </div>
           </div>
           <div>
@@ -581,9 +777,9 @@ anomalies = [x for x in series if std_t &gt; 0 and abs(x[1] - mean_t) / std_t &g
               <a class="btn" href="https://github.com/DaffaAhmdhan/pemantauan-suhu-esp8266" target="_blank" rel="noopener noreferrer">GitHub Repo &nearr;</a>
             </div>
             <details class="case-study">
-              <summary>+ Show Technical Architecture &amp; 30-Year SQL Retention</summary>
+              <summary>+ Show 30-Year SQL Retention Architecture</summary>
               <div class="case-body">
-                <p>To keep 30 years of climate history inside free-tier database storage, a scheduled SQL cron rolls up raw minute-level readings into compact daily min/avg/max rows before pruning old raw logs.</p>
+                <p>Daily cron rolls up raw minute-level logs into compact daily min/avg/max rows before pruning old raw rows to stay within free-tier storage for 30 years.</p>
                 <pre class="mono">INSERT INTO daily_telemetry_summary (log_date, min_t, avg_t, max_t)
 SELECT DATE(created_at), MIN(temp), AVG(temp), MAX(temp)
 FROM raw_sensor_logs WHERE created_at &lt; NOW() - INTERVAL '7 days'
@@ -593,29 +789,41 @@ GROUP BY DATE(created_at);</pre>
           </div>
         </article>
 
-        <!-- PROJECT 5 -->
+        <!-- PROJECT 06 -->
         <article class="project-card" data-category="it">
           <div>
+            <div class="proj-visual">
+              <div class="vis-head mono">
+                <span><span class="vis-dot" style="background:var(--green);"></span>UNATTENDED PROVISIONING CONSOLE</span>
+                <span>&lt; 15 MIN</span>
+              </div>
+              <div class="terminal-preview mono">
+                <div>&gt; setup-komputer-baru.bat --unattended</div>
+                <div style="color:#34d399;">[OK] MicroDicom + RadiAnt DICOM installed (/S)</div>
+                <div style="color:#34d399;">[OK] BPJS Fingerprint SDK + Radmin silent MSI</div>
+                <div style="color:#60a5fa;">[DONE] Clinical workstation ready (14m 12s)</div>
+              </div>
+            </div>
             <div class="proj-top">
               <span class="proj-cat">IT Operations &bull; Windows Automation</span>
               <span class="proj-year mono">2025 – 2026</span>
             </div>
-            <h3 class="proj-title">05. Automated Hospital PC Deployment Suite (setup-komputer-baru.bat)</h3>
+            <h3 class="proj-title">06. Automated Hospital PC Deployment Suite (setup-komputer-baru.bat)</h3>
             <p class="proj-summary">
-              Zero-touch Windows provisioning script built for RS Fatmawati to turn a brand-new PC into a ready-to-use hospital clinical workstation—eliminating hours of manual software and driver setup.
+              Zero-touch Windows provisioning script built for RS Fatmawati to transform a fresh PC into a compliant hospital clinical workstation without manual clicking.
             </p>
             <div class="metrics-strip">
-              <div class="metric-cell"><div class="m-val mono">&lt; 15 min</div><div class="m-lbl">Down from ~90m manual setup</div></div>
-              <div class="metric-cell"><div class="m-val mono">Silent MSI</div><div class="m-lbl">Unattended App Installs</div></div>
-              <div class="metric-cell"><div class="m-val mono">DICOM / BPJS</div><div class="m-lbl">Clinical Ready Out-of-Box</div></div>
+              <div class="metric-cell"><div class="m-val mono">&lt; 15 min</div><div class="m-lbl">Down from ~90m setup</div></div>
+              <div class="metric-cell"><div class="m-val mono">Silent MSI</div><div class="m-lbl">Zero-Touch Installs</div></div>
+              <div class="metric-cell"><div class="m-val mono">DICOM/BPJS</div><div class="m-lbl">Clinical Ready</div></div>
             </div>
             <ul class="story-list">
-              <li><span class="story-tag">Problem</span><span>Setting up each new polyclinic PC manually took ~90 minutes and caused missing DICOM or BPJS drivers.</span></li>
-              <li><span class="story-tag">Solution</span><span>Built Batch &amp; PowerShell scripts that silently install MicroDicom, RadiAnt, BPJS fingerprint SDKs, Radmin, and Office.</span></li>
-              <li><span class="story-tag">Result</span><span>Cut deployment time by over 80% with zero configuration drift across hospital units.</span></li>
+              <li><span class="story-tag">Problem</span><span>Manual clinical PC setup took ~90m and led to missing DICOM codecs or BPJS biometric drivers.</span></li>
+              <li><span class="story-tag">Solution</span><span>Built Batch &amp; PowerShell scripts for silent installation of MicroDicom, BPJS SDKs, Radmin, and Office.</span></li>
+              <li><span class="story-tag">Result</span><span>Cut deployment time by &gt;80% with zero configuration drift across hospital units.</span></li>
             </ul>
             <div class="tags">
-              <span class="tag">Windows Batch</span><span class="tag">PowerShell</span><span class="tag">Silent MSI/EXE</span><span class="tag">DICOM / PACS</span><span class="tag">BPJS Biometrics</span>
+              <span class="tag">Windows Batch</span><span class="tag">PowerShell</span><span class="tag">Silent MSI/EXE</span><span class="tag">DICOM / BPJS</span>
             </div>
           </div>
           <div>
@@ -623,9 +831,8 @@ GROUP BY DATE(created_at);</pre>
               <span class="mono" style="font-size:12.5px; color:var(--green); font-weight:600;">&#10003; Active Internal Hospital Tool</span>
             </div>
             <details class="case-study">
-              <summary>+ Show Unattended Deployment Script Pattern</summary>
+              <summary>+ Show Unattended Script Pattern</summary>
               <div class="case-body">
-                <p>Runs sequentially from a USB drive or network share with zero user prompts, ensuring clinical kiosks never fall asleep mid-shift.</p>
                 <pre class="mono">@echo off
 start /wait "" "%~dp0pkg\MicroDicom-setup.exe" /S
 msiexec /i "%~dp0pkg\bpjs-fingerprint.msi" /qn /norestart
@@ -635,21 +842,32 @@ powercfg -change -standby-timeout-ac 0</pre>
           </div>
         </article>
 
-        <!-- PROJECT 6 -->
+        <!-- PROJECT 07 -->
         <article class="project-card" data-category="data">
           <div>
+            <div class="proj-visual">
+              <div class="vis-head mono">
+                <span><span class="vis-dot" style="background:var(--accent);"></span>CATEGORY PROFITABILITY &amp; SEASONALITY</span>
+                <span>VERCEL LIVE</span>
+              </div>
+              <div class="mini-bars">
+                <div class="mini-bar-row"><span class="mono">Electronics</span><div class="mini-track"><div class="mini-fill" style="width:86%; background:#2563eb;"></div></div><span class="mono">High Rev</span></div>
+                <div class="mini-bar-row"><span class="mono">Accessories</span><div class="mini-track"><div class="mini-fill" style="width:68%; background:#059669;"></div></div><span class="mono">Top Margin</span></div>
+                <div class="mini-bar-row"><span class="mono">Home Goods</span><div class="mini-track"><div class="mini-fill" style="width:52%; background:#64748b;"></div></div><span class="mono">Steady</span></div>
+              </div>
+            </div>
             <div class="proj-top">
               <span class="proj-cat">Data Analyst &bull; Retail BI</span>
               <span class="proj-year mono">2026</span>
             </div>
-            <h3 class="proj-title">06. Online Retail Sales &amp; Profitability BI Portfolio</h3>
+            <h3 class="proj-title">07. Online Retail Sales &amp; Profitability BI Portfolio</h3>
             <p class="proj-summary">
-              Interactive retail analytics web app focused on cleaning raw invoice records, uncovering seasonal buying peaks, and separating high-volume items from genuinely profitable product categories.
+              Interactive retail analytics web app focused on cleaning invoice exports, spotting seasonal demand peaks, and ranking product categories by true profit margin.
             </p>
             <ul class="story-list">
-              <li><span class="story-tag">Problem</span><span>Raw retail exports contained duplicate lines and negative returns that skewed revenue totals.</span></li>
-              <li><span class="story-tag">Solution</span><span>Cleaned transactions with Python/Pandas and SQL, then published category margin &amp; channel breakdowns.</span></li>
-              <li><span class="story-tag">Result</span><span>Clear live dashboard highlighting top-margin categories and seasonal demand windows.</span></li>
+              <li><span class="story-tag">Problem</span><span>Raw invoice exports had duplicate rows and negative returns distorting revenue totals.</span></li>
+              <li><span class="story-tag">Solution</span><span>Cleaned datasets in Python/Pandas &amp; SQL and published category margin visualizations.</span></li>
+              <li><span class="story-tag">Result</span><span>Live web portfolio highlighting high-margin SKUs and seasonal demand windows.</span></li>
             </ul>
             <div class="tags">
               <span class="tag">Python</span><span class="tag">Pandas</span><span class="tag">Matplotlib</span><span class="tag">SQL</span><span class="tag">Vercel</span>
@@ -661,7 +879,7 @@ powercfg -change -standby-timeout-ac 0</pre>
               <a class="btn" href="https://github.com/DaffaAhmdhan/sales-analysis-portfolio" target="_blank" rel="noopener noreferrer">GitHub Repo &nearr;</a>
             </div>
             <details class="case-study">
-              <summary>+ Show Technical Scope &amp; Hygiene Steps</summary>
+              <summary>+ Show Data Hygiene &amp; Scope</summary>
               <div class="case-body">
                 <p>Strips malformed timestamps, cancels/returns, and duplicate invoice rows before computing gross margin per category and channel share.</p>
               </div>
@@ -669,21 +887,32 @@ powercfg -change -standby-timeout-ac 0</pre>
           </div>
         </article>
 
-        <!-- PROJECT 7 -->
+        <!-- PROJECT 08 -->
         <article class="project-card" data-category="data">
           <div>
+            <div class="proj-visual">
+              <div class="vis-head mono">
+                <span><span class="vis-dot" style="background:var(--amber);"></span>ACS CENSUS DEMOGRAPHIC EXPLORER</span>
+                <span>REACT / TS</span>
+              </div>
+              <div class="mini-bars">
+                <div class="mini-bar-row"><span class="mono">Income Tier</span><div class="mini-track"><div class="mini-fill" style="width:74%; background:#2563eb;"></div></div><span class="mono">ACS</span></div>
+                <div class="mini-bar-row"><span class="mono">Poverty Rate</span><div class="mini-track"><div class="mini-fill" style="width:44%; background:#b45309;"></div></div><span class="mono">Regional</span></div>
+                <div class="mini-bar-row"><span class="mono">Education</span><div class="mini-track"><div class="mini-fill" style="width:62%; background:#059669;"></div></div><span class="mono">Correlated</span></div>
+              </div>
+            </div>
             <div class="proj-top">
               <span class="proj-cat">Data Visualization &bull; Public Census Data</span>
               <span class="proj-year mono">2026</span>
             </div>
-            <h3 class="proj-title">07. ACS Poverty &amp; Socio-Economic Demographic Explorer</h3>
+            <h3 class="proj-title">08. ACS Poverty &amp; Socio-Economic Demographic Explorer</h3>
             <p class="proj-summary">
-              Interactive React &amp; TypeScript visualization tool built to explore American Community Survey (ACS) public census data—making poverty indicators and income disparity easy to compare visually.
+              Interactive React &amp; TypeScript visualization app built to explore American Community Survey (ACS) census indicators and compare regional poverty metrics side by side.
             </p>
             <ul class="story-list">
-              <li><span class="story-tag">Problem</span><span>Multi-dimensional census spreadsheets are hard for non-analysts to compare across demographics.</span></li>
-              <li><span class="story-tag">Solution</span><span>Built an interactive TypeScript + React web interface with filterable socio-economic charts.</span></li>
-              <li><span class="story-tag">Result</span><span>Deployed publicly on Vercel for instant side-by-side demographic comparison.</span></li>
+              <li><span class="story-tag">Problem</span><span>Multi-dimensional census spreadsheets are slow and difficult to compare visually.</span></li>
+              <li><span class="story-tag">Solution</span><span>Built an interactive TypeScript + React web explorer with filterable socio-economic views.</span></li>
+              <li><span class="story-tag">Result</span><span>Deployed live on Vercel for instant demographic and income-disparity exploration.</span></li>
             </ul>
             <div class="tags">
               <span class="tag">TypeScript</span><span class="tag">React</span><span class="tag">Data Viz</span><span class="tag">ACS Census</span><span class="tag">Vercel</span>
@@ -697,30 +926,40 @@ powercfg -change -standby-timeout-ac 0</pre>
             <details class="case-study">
               <summary>+ Show Technical Details &amp; Indicators</summary>
               <div class="case-body">
-                <p>Visualizes poverty rates alongside household income brackets, education tiers, and regional demographic splits from ACS survey releases.</p>
+                <p>Visualizes poverty rates alongside household income brackets, education tiers, and geographic variance from ACS survey releases.</p>
               </div>
             </details>
           </div>
         </article>
 
-        <!-- PROJECT 8 -->
+        <!-- PROJECT 09 -->
         <article class="project-card" data-category="research">
           <div>
+            <div class="proj-visual">
+              <div class="vis-head mono">
+                <span><span class="vis-dot" style="background:var(--accent);"></span>MICRO-DOPPLER RADAR SIGNAL WAVEFORM</span>
+                <span>60–64 GHZ</span>
+              </div>
+              <svg viewBox="0 0 320 56" width="100%" height="56" aria-label="Radar waveform preview">
+                <polyline fill="none" stroke="#2563eb" stroke-width="2" points="0,28 16,26 32,31 48,14 64,44 80,10 96,46 112,20 128,36 144,28 160,26 176,12 192,45 208,8 224,48 240,18 256,38 272,27 288,29 304,25 320,28" />
+                <line x1="0" y1="28" x2="320" y2="28" stroke="#94a3b8" stroke-dasharray="3 3" stroke-width="1" />
+              </svg>
+            </div>
             <div class="proj-top">
               <span class="proj-cat">AI Research &bull; Published Journal (ARMADA)</span>
               <span class="proj-year mono">2026</span>
             </div>
-            <h3 class="proj-title">08. Hybrid Spatial-Temporal Deep Learning for FMCW Radar HAR</h3>
+            <h3 class="proj-title">09. Hybrid Spatial-Temporal Deep Learning for FMCW Radar HAR</h3>
             <p class="proj-summary">
-              Published international research using millimeter-wave radar signals (instead of cameras) to recognize human movement and falls—protecting patient privacy in healthcare and smart-home monitoring.
+              Published international research using millimeter-wave radar signals (instead of cameras) to classify human activity and falls while preserving privacy.
             </p>
             <ul class="story-list">
-              <li><span class="story-tag">Problem</span><span>Optical cameras fail in darkness and invade privacy in clinical or elderly care rooms.</span></li>
-              <li><span class="story-tag">Solution</span><span>Built a Range/Doppler FFT signal pipeline (TI IWR6843AOPEVM) and benchmarked 4 PyTorch architectures.</span></li>
+              <li><span class="story-tag">Problem</span><span>Optical cameras fail in darkness and raise patient privacy issues in clinical rooms.</span></li>
+              <li><span class="story-tag">Solution</span><span>Built a Range/Doppler FFT pipeline (TI IWR6843AOPEVM) and benchmarked 4 PyTorch models.</span></li>
               <li><span class="story-tag">Result</span><span>Published in ARMADA International Journal (Vol. 4, No. 7, DOI 10.55681/armada.v4i7.3001).</span></li>
             </ul>
             <div class="tags">
-              <span class="tag">Python</span><span class="tag">PyTorch</span><span class="tag">FMCW Radar</span><span class="tag">FFT Signal Processing</span><span class="tag">3D CNN-LSTM</span>
+              <span class="tag">Python</span><span class="tag">PyTorch</span><span class="tag">FMCW Radar</span><span class="tag">FFT DSP</span><span class="tag">3D CNN-LSTM</span>
             </div>
           </div>
           <div>
@@ -736,24 +975,39 @@ powercfg -change -standby-timeout-ac 0</pre>
           </div>
         </article>
 
-        <!-- PROJECT 9 -->
+        <!-- PROJECT 10 -->
         <article class="project-card" data-category="iot">
           <div>
+            <div class="proj-visual">
+              <div class="vis-head mono">
+                <span><span class="vis-dot" style="background:var(--green);"></span>FINITE STATE MACHINE FLOW</span>
+                <span>SINTA 5</span>
+              </div>
+              <div style="display:flex; align-items:center; justify-content:space-between; gap:4px; font-size:10px; font-weight:700;" class="mono">
+                <span style="padding:5px 7px; border-radius:5px; background:var(--surface); border:1px solid var(--border);">IDLE</span>
+                <span>&rarr;</span>
+                <span style="padding:5px 7px; border-radius:5px; background:var(--accent-bg); color:var(--accent); border:1px solid var(--accent);">RFID</span>
+                <span>&rarr;</span>
+                <span style="padding:5px 7px; border-radius:5px; background:var(--surface); border:1px solid var(--border);">MLX90614</span>
+                <span>&rarr;</span>
+                <span style="padding:5px 7px; border-radius:5px; background:var(--green-bg); color:var(--green); border:1px solid var(--green);">LOG</span>
+              </div>
+            </div>
             <div class="proj-top">
               <span class="proj-cat">Embedded Systems &bull; SINTA 5 Journal</span>
               <span class="proj-year mono">2023</span>
             </div>
-            <h3 class="proj-title">09. Contactless Body Temp IoT Scanner with Finite State Machine</h3>
+            <h3 class="proj-title">10. Contactless Body Temp IoT Scanner with Finite State Machine</h3>
             <p class="proj-summary">
-              Built and deployed an automated RFID + infrared temperature scanner for SMA Al-Kenzie Bandung, pairing student ID taps with contactless body temperature checks and publishing in SINTA 5 journal JPkMN.
+              Built and deployed an automated RFID + infrared temperature scanner for SMA Al-Kenzie Bandung, pairing student ID taps with contactless body temperature checks.
             </p>
             <ul class="story-list">
-              <li><span class="story-tag">Problem</span><span>Manual morning temperature checks created queues and lacked student attendance logging.</span></li>
-              <li><span class="story-tag">Solution</span><span>Combined MLX90614 infrared sensor + RFID RC522 under a deterministic C++ Finite State Machine.</span></li>
-              <li><span class="story-tag">Result</span><span>Deployed at SMA Al-Kenzie Bandung and published in accredited SINTA 5 journal (JPkMN Vol. 4 No. 2).</span></li>
+              <li><span class="story-tag">Problem</span><span>Manual morning temperature checks slowed entry queues and lacked digital attendance logs.</span></li>
+              <li><span class="story-tag">Solution</span><span>Combined MLX90614 IR sensor + RFID RC522 under a deterministic C++ Finite State Machine.</span></li>
+              <li><span class="story-tag">Result</span><span>Deployed at SMA Al-Kenzie Bandung and published in SINTA 5 journal JPkMN (Vol. 4 No. 2).</span></li>
             </ul>
             <div class="tags">
-              <span class="tag">Arduino / C++</span><span class="tag">MLX90614</span><span class="tag">RFID RC522</span><span class="tag">Finite State Machine</span><span class="tag">SINTA 5</span>
+              <span class="tag">Arduino / C++</span><span class="tag">MLX90614</span><span class="tag">RFID RC522</span><span class="tag">FSM</span><span class="tag">SINTA 5</span>
             </div>
           </div>
           <div>
@@ -763,7 +1017,6 @@ powercfg -change -standby-timeout-ac 0</pre>
             <details class="case-study">
               <summary>+ Show Finite State Machine Flow</summary>
               <div class="case-body">
-                <p>Deterministic C++ state transitions eliminate sensor read collisions during fast student entry:</p>
                 <pre class="mono">IDLE -&gt; RFID_AUTH -&gt; TEMP_SAMPLE (MLX90614) -&gt; THRESHOLD_EVAL -&gt; LOG_DISPLAY</pre>
               </div>
             </details>
@@ -958,7 +1211,7 @@ powercfg -change -standby-timeout-ac 0</pre>
         <div class="kicker">Documentation</div>
         <h2>How the Data Projects &amp; Portfolio Work</h2>
         <p>
-          Every number in the 3 new Data Analytics dashboards comes from runnable Python &amp; SQLite pipelines rather than static mockups.
+          Every number in the 4 SQL/Python Data Analytics dashboards comes from runnable pipelines rather than static mockups.
         </p>
       </div>
       <div class="grid-2">
@@ -979,13 +1232,13 @@ output/*_metrics.json  --&gt;  dashboards/*.html (Chart.js)</pre>
         <div class="card-box">
           <h3 style="font-size:16px; margin:0 0 8px;">Reproduce Locally</h3>
           <pre class="snippet mono"># Serve portfolio + dashboards
-python -m http.server 8080 --directory portfolio
+python -m http.server 8085 --directory portfolio
 
-# Re-run any project pipeline (example: Telecom SLA)
-python projects/telecom-it-sla-analytics/data/generate_data.py
-python projects/telecom-it-sla-analytics/src/run_analysis.py</pre>
+# Re-run flagship Hospital Ops pipeline
+python projects/hospital-clinical-ops-analytics/data/generate_data.py
+python projects/hospital-clinical-ops-analytics/src/run_analysis.py</pre>
           <p style="font-size:14px; margin:12px 0 0;">
-            Theme preference (<code>light</code> / <code>dark</code>) is stored in <code>localStorage('daffa_theme_v2')</code> and synced across this page and all 3 dashboards.
+            Theme preference (<code>light</code> / <code>dark</code>) is stored in <code>localStorage('daffa_theme_v2')</code> and synced across this page and all 4 dashboards.
           </p>
         </div>
       </div>
