@@ -1,0 +1,1074 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Daffa Ahmadhan Khusumah — Data Analytics, IT Operations &amp; IoT Portfolio</title>
+  <meta name="description" content="Portfolio of Daffa Ahmadhan Khusumah — Data Analyst, IT Support &amp; Systems Automation Engineer, and IoT Specialist." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <style>
+    :root[data-theme="light"] {
+      --bg: #f8fafc;
+      --surface: #ffffff;
+      --surface-alt: #f1f5f9;
+      --border: #e2e8f0;
+      --border-strong: #cbd5e1;
+      --text: #0f172a;
+      --body: #334155;
+      --muted: #64748b;
+      --accent: #2563eb;
+      --accent-hover: #1d4ed8;
+      --accent-bg: #eff6ff;
+      --green: #059669;
+      --green-bg: #ecfdf5;
+      --amber: #b45309;
+      --amber-bg: #fffbeb;
+      --code-bg: #f8fafc;
+      --nav-bg: rgba(255, 255, 255, 0.92);
+      --shadow: 0 1px 3px rgba(15, 23, 42, 0.06), 0 1px 2px rgba(15, 23, 42, 0.04);
+    }
+    :root[data-theme="dark"] {
+      --bg: #0f172a;
+      --surface: #1e293b;
+      --surface-alt: #0f172a;
+      --border: #334155;
+      --border-strong: #475569;
+      --text: #f8fafc;
+      --body: #cbd5e1;
+      --muted: #94a3b8;
+      --accent: #60a5fa;
+      --accent-hover: #3b82f6;
+      --accent-bg: rgba(96, 165, 250, 0.14);
+      --green: #34d399;
+      --green-bg: rgba(52, 211, 153, 0.14);
+      --amber: #fbbf24;
+      --amber-bg: rgba(251, 191, 36, 0.12);
+      --code-bg: #0b1120;
+      --nav-bg: rgba(15, 23, 42, 0.90);
+      --shadow: 0 2px 6px rgba(0, 0, 0, 0.35);
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      background-color: var(--bg);
+      color: var(--body);
+      font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+      font-size: 15.5px;
+      line-height: 1.65;
+      transition: background-color 0.2s ease, color 0.2s ease;
+    }
+    h1, h2, h3, h4 { color: var(--text); }
+    .mono { font-family: 'JetBrains Mono', monospace; }
+    a { color: inherit; }
+    .wrap { max-width: 1140px; margin: 0 auto; padding: 0 22px; }
+
+    /* Navigation */
+    .site-header {
+      position: sticky; top: 0; z-index: 40;
+      background: var(--nav-bg);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid var(--border);
+    }
+    .nav-inner {
+      display: flex; align-items: center; justify-content: space-between;
+      gap: 16px; min-height: 64px; flex-wrap: wrap; padding: 8px 0;
+    }
+    .brand {
+      font-weight: 800; font-size: 16px; text-decoration: none;
+      color: var(--text); display: flex; align-items: center; gap: 10px;
+    }
+    .brand-mark {
+      display: inline-flex; align-items: center; justify-content: center;
+      width: 32px; height: 32px; border-radius: 8px;
+      background: var(--accent); color: #ffffff; font-size: 14px; font-weight: 700;
+    }
+    .nav-links { display: flex; align-items: center; gap: 20px; flex-wrap: wrap; font-size: 14px; font-weight: 500; color: var(--muted); }
+    .nav-links a { text-decoration: none; transition: color 0.15s; }
+    .nav-links a:hover { color: var(--accent); }
+    .nav-actions { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+
+    /* Buttons */
+    .btn {
+      display: inline-flex; align-items: center; gap: 6px;
+      padding: 8px 14px; border-radius: 8px; font-size: 13px; font-weight: 600;
+      border: 1px solid var(--border); background: var(--surface); color: var(--text);
+      text-decoration: none; cursor: pointer; box-shadow: var(--shadow);
+      transition: border-color 0.15s, color 0.15s, background 0.15s;
+    }
+    .btn:hover { border-color: var(--accent); color: var(--accent); }
+    .btn-primary {
+      background: var(--accent); border-color: var(--accent); color: #ffffff;
+    }
+    .btn-primary:hover { background: var(--accent-hover); border-color: var(--accent-hover); color: #ffffff; }
+
+    /* Dropdown */
+    .dropdown { position: relative; }
+    .dropdown-menu {
+      display: none; position: absolute; right: 0; top: 100%; margin-top: 6px;
+      min-width: 220px; background: var(--surface); border: 1px solid var(--border);
+      border-radius: 10px; padding: 6px; box-shadow: 0 12px 28px rgba(15, 23, 42, 0.14); z-index: 50;
+    }
+    .dropdown.open .dropdown-menu { display: block; }
+    .dropdown-menu a {
+      display: block; padding: 9px 12px; border-radius: 6px; font-size: 13px;
+      font-weight: 500; color: var(--text); text-decoration: none;
+    }
+    .dropdown-menu a:hover { background: var(--accent-bg); color: var(--accent); }
+
+    /* Hero */
+    .hero { padding: 52px 0 44px; border-bottom: 1px solid var(--border); }
+    .hero-grid { display: grid; grid-template-columns: 1.55fr 0.85fr; gap: 40px; align-items: center; }
+    @media (max-width: 820px) { .hero-grid { grid-template-columns: 1fr; } }
+    .status-pill {
+      display: inline-flex; align-items: center; gap: 8px; font-size: 13px; font-weight: 600;
+      padding: 5px 12px; border-radius: 999px; background: var(--green-bg); color: var(--green);
+      border: 1px solid rgba(5, 150, 105, 0.25); margin-bottom: 16px;
+    }
+    .dot { width: 8px; height: 8px; border-radius: 50%; background: var(--green); }
+    .hero h1 { font-size: clamp(28px, 3.8vw, 40px); line-height: 1.2; margin: 0 0 16px; letter-spacing: -0.025em; font-weight: 800; }
+    .hero-bullets { list-style: none; padding: 0; margin: 0 0 24px; display: flex; flex-direction: column; gap: 8px; }
+    .hero-bullets li { font-size: 15px; color: var(--body); display: flex; gap: 8px; }
+    .hero-bullets strong { color: var(--text); }
+
+    .photo-card {
+      background: var(--surface); border: 1px solid var(--border);
+      border-radius: 14px; padding: 14px; box-shadow: var(--shadow);
+    }
+    .photo-card img {
+      width: 100%; aspect-ratio: 1 / 1; object-fit: cover; border-radius: 10px; display: block;
+    }
+    .photo-caption {
+      margin-top: 12px; font-size: 13px; color: var(--muted); font-weight: 500;
+      display: flex; justify-content: space-between; align-items: center;
+    }
+
+    /* Sections */
+    section.block { padding: 52px 0; border-bottom: 1px solid var(--border); }
+    .section-head { margin-bottom: 26px; }
+    .kicker { font-size: 12px; text-transform: uppercase; letter-spacing: 0.08em; color: var(--accent); font-weight: 700; }
+    .section-head h2 { font-size: 28px; margin: 4px 0 8px; letter-spacing: -0.02em; font-weight: 800; }
+    .section-head p { margin: 0; color: var(--muted); font-size: 15px; max-width: 70ch; }
+
+    /* At a Glance 3 Cards */
+    .pillars { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 18px; }
+    .pillar-card {
+      background: var(--surface); border: 1px solid var(--border);
+      border-radius: 12px; padding: 22px; box-shadow: var(--shadow);
+    }
+    .pillar-badge {
+      display: inline-block; font-size: 12px; font-weight: 700; padding: 4px 10px;
+      border-radius: 6px; background: var(--accent-bg); color: var(--accent); margin-bottom: 10px;
+    }
+    .pillar-card h3 { font-size: 17px; margin: 0 0 8px; font-weight: 700; }
+    .pillar-card p { font-size: 14px; color: var(--body); margin: 0; }
+
+    /* Filter Controls */
+    .controls {
+      display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center;
+      gap: 12px; margin-bottom: 24px;
+    }
+    .filter-tabs { display: flex; flex-wrap: wrap; gap: 8px; }
+    .tab-btn {
+      padding: 7px 13px; border-radius: 8px; font-size: 13px; font-weight: 600;
+      border: 1px solid var(--border); background: var(--surface); color: var(--body); cursor: pointer;
+      box-shadow: var(--shadow);
+    }
+    .tab-btn.active { background: var(--accent); border-color: var(--accent); color: #ffffff; }
+    .search-input {
+      padding: 8px 13px; border-radius: 8px; border: 1px solid var(--border);
+      background: var(--surface); color: var(--text); font-size: 13.5px; min-width: 240px;
+    }
+    .search-input:focus { outline: none; border-color: var(--accent); }
+
+    /* Project Grid */
+    .project-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 20px; }
+    @media (max-width: 900px) { .project-grid { grid-template-columns: 1fr; } }
+
+    .project-card {
+      background: var(--surface); border: 1px solid var(--border);
+      border-radius: 14px; padding: 24px; box-shadow: var(--shadow);
+      display: flex; flex-direction: column; justify-content: space-between;
+      transition: border-color 0.15s, transform 0.15s;
+    }
+    .project-card:hover { border-color: var(--accent); }
+    .proj-top {
+      display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center;
+      gap: 8px; margin-bottom: 10px;
+    }
+    .proj-cat {
+      font-size: 11.5px; font-weight: 700; padding: 3px 9px; border-radius: 6px;
+      background: var(--accent-bg); color: var(--accent);
+    }
+    .proj-year { font-size: 12.5px; color: var(--muted); font-weight: 600; }
+    .proj-title { font-size: 19px; font-weight: 700; margin: 0 0 8px; line-height: 1.3; }
+    .proj-summary { font-size: 14.5px; color: var(--body); margin: 0 0 16px; }
+
+    /* 3 Key Metrics Strip */
+    .metrics-strip {
+      display: grid; grid-template-columns: repeat(3, 1fr);
+      gap: 10px; background: var(--surface-alt); border: 1px solid var(--border);
+      border-radius: 10px; padding: 12px; margin-bottom: 16px;
+    }
+    .metric-cell .m-val { font-size: 16px; font-weight: 800; color: var(--text); }
+    .metric-cell .m-lbl { font-size: 11.5px; color: var(--muted); line-height: 1.3; }
+
+    /* Plain-English Story Bullets */
+    .story-list {
+      margin: 0 0 16px; padding: 0; list-style: none;
+      display: flex; flex-direction: column; gap: 7px; font-size: 13.5px;
+    }
+    .story-list li { display: flex; gap: 8px; align-items: baseline; }
+    .story-tag {
+      font-size: 11px; font-weight: 700; text-transform: uppercase; padding: 2px 6px;
+      border-radius: 4px; background: var(--surface-alt); color: var(--text);
+      border: 1px solid var(--border); flex-shrink: 0;
+    }
+
+    .tags { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 16px; }
+    .tag {
+      font-size: 11.5px; font-weight: 500; padding: 3px 9px; border-radius: 6px;
+      background: var(--surface-alt); border: 1px solid var(--border); color: var(--muted);
+    }
+
+    .proj-actions {
+      display: flex; flex-wrap: wrap; align-items: center; gap: 8px;
+      padding-top: 14px; border-top: 1px solid var(--border);
+    }
+
+    /* Expandable Technical Details */
+    details.case-study { margin-top: 14px; }
+    details.case-study summary {
+      cursor: pointer; font-size: 13px; font-weight: 600; color: var(--accent);
+      user-select: none; list-style: none; display: inline-flex; align-items: center; gap: 6px;
+    }
+    details.case-study summary::-webkit-details-marker { display: none; }
+    .case-body {
+      margin-top: 12px; padding-top: 12px; border-top: 1px dashed var(--border);
+      font-size: 13.5px; color: var(--body);
+    }
+    .case-body h4 { font-size: 12px; text-transform: uppercase; letter-spacing: 0.05em; margin: 10px 0 6px; color: var(--text); }
+    pre.snippet {
+      background: var(--code-bg); border: 1px solid var(--border); border-radius: 8px;
+      padding: 12px; font-size: 11.5px; overflow-x: auto; margin: 8px 0 0; color: var(--text);
+    }
+
+    /* Experience */
+    .exp-list { display: flex; flex-direction: column; gap: 16px; }
+    .exp-card {
+      background: var(--surface); border: 1px solid var(--border);
+      border-radius: 12px; padding: 20px 24px; box-shadow: var(--shadow);
+      display: grid; grid-template-columns: 230px 1fr; gap: 20px;
+    }
+    @media (max-width: 720px) { .exp-card { grid-template-columns: 1fr; gap: 8px; } }
+    .exp-when { font-size: 13px; color: var(--accent); font-weight: 700; }
+    .exp-where { font-size: 13.5px; color: var(--muted); margin-top: 2px; font-weight: 500; }
+    .exp-role { font-size: 17px; font-weight: 700; margin: 0 0 8px; }
+    .exp-bullets { margin: 0; padding-left: 18px; font-size: 14px; color: var(--body); }
+    .exp-bullets li { margin-bottom: 5px; }
+
+    /* Skills Visual Pills */
+    .skills-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 18px; }
+    .skill-box {
+      background: var(--surface); border: 1px solid var(--border);
+      border-radius: 12px; padding: 20px; box-shadow: var(--shadow);
+    }
+    .skill-box h3 { font-size: 15.5px; margin: 0 0 12px; font-weight: 700; }
+    .pill-wrap { display: flex; flex-wrap: wrap; gap: 7px; }
+    .skill-pill {
+      font-size: 12.5px; font-weight: 500; padding: 4px 10px; border-radius: 6px;
+      background: var(--surface-alt); border: 1px solid var(--border); color: var(--text);
+    }
+
+    .grid-2 { display: grid; grid-template-columns: repeat(auto-fit, minmax(310px, 1fr)); gap: 18px; }
+    .card-box {
+      background: var(--surface); border: 1px solid var(--border);
+      border-radius: 12px; padding: 22px; box-shadow: var(--shadow);
+    }
+    footer { padding: 32px 0 48px; text-align: center; font-size: 13px; color: var(--muted); }
+  </style>
+</head>
+<body>
+
+  <!-- Navigation -->
+  <header class="site-header">
+    <div class="wrap nav-inner">
+      <a href="#top" class="brand">
+        <span class="brand-mark">D</span>
+        <span>Daffa Ahmadhan K.</span>
+      </a>
+
+      <nav class="nav-links">
+        <a href="#overview">Overview</a>
+        <a href="#projects">Projects (9)</a>
+        <a href="#experience">Experience</a>
+        <a href="#skills">Skills</a>
+        <a href="#research">Education &amp; Papers</a>
+        <a href="#documentation">Docs</a>
+        <a href="#contact">Contact</a>
+      </nav>
+
+      <div class="nav-actions">
+        <div class="dropdown" id="cvDropdown">
+          <button class="btn btn-primary" type="button" onclick="toggleDropdown()">Download CV &#9662;</button>
+          <div class="dropdown-menu">
+            <a href="CV_Daffa_Master_EN.pdf" download>Master CV (English PDF)</a>
+            <a href="CV_Daffa_Master_ID.pdf" download>Master CV (Indonesian PDF)</a>
+          </div>
+        </div>
+        <a class="btn" href="https://github.com/DaffaAhmdhan" target="_blank" rel="noopener noreferrer">GitHub</a>
+        <button class="btn" id="themeToggle" type="button" aria-label="Switch Theme">Dark Mode</button>
+      </div>
+    </div>
+  </header>
+
+  <main id="top" class="wrap">
+
+    <!-- Hero -->
+    <section class="hero">
+      <div class="hero-grid">
+        <div>
+          <div class="status-pill">
+            <span class="dot"></span>
+            <span>Available for Data Analyst, BI &amp; Systems Engineering roles</span>
+          </div>
+
+          <h1>Hi, I'm Daffa Ahmadhan Khusumah — I turn operational data into clear decisions and build reliable IT &amp; IoT systems.</h1>
+
+          <ul class="hero-bullets">
+            <li><span>&bull;</span><span><strong>Education:</strong> B.Eng. in Computer Engineering, Telkom University (GPA 3.68 / 4.00, Cum Laude).</span></li>
+            <li><span>&bull;</span><span><strong>Current Role:</strong> IT Support &amp; Automation at <strong>RS Fatmawati Hospital</strong> (Jakarta) — supporting 24/7 clinical systems and building server-room IoT monitoring.</span></li>
+            <li><span>&bull;</span><span><strong>Data Analytics Focus:</strong> Using <strong>SQL, BigQuery, Python, and interactive dashboards</strong> to diagnose SLA bottlenecks, customer retention, and energy anomalies.</span></li>
+          </ul>
+
+          <div style="display:flex; flex-wrap:wrap; gap:10px;">
+            <a href="#projects" class="btn btn-primary">Browse 9 Projects</a>
+            <a href="#documentation" class="btn">How This Portfolio Works</a>
+            <a href="https://www.linkedin.com/in/daffa-ahmadhan-khusumah" target="_blank" rel="noopener noreferrer" class="btn">LinkedIn &nearr;</a>
+            <a href="mailto:daffaahmadhan@gmail.com" class="btn">Email Me</a>
+          </div>
+        </div>
+
+        <div>
+          <div class="photo-card">
+            <img src="photo.jpg" alt="Daffa Ahmadhan Khusumah" />
+            <div class="photo-caption">
+              <span><strong>Daffa Ahmadhan K.</strong></span>
+              <span>Depok &bull; Jakarta &bull; Bandung</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- At a Glance: 3 Core Pillars -->
+    <section id="overview" class="block">
+      <div class="section-head">
+        <div class="kicker">At a Glance</div>
+        <h2>What I Bring to a Team</h2>
+        <p>A quick summary of how my data analytics, IT operations, and hardware engineering backgrounds connect.</p>
+      </div>
+      <div class="pillars">
+        <div class="pillar-card">
+          <span class="pillar-badge">01 &bull; Data Analytics &amp; BI</span>
+          <h3>From Raw Logs to Clear Answers</h3>
+          <p>I clean messy CSV and database records using SQL and Python, model star schemas, run cohort/RFM and Pareto analyses, and build interactive dashboards that explain <em>why</em> a metric moved and <em>what</em> to fix next.</p>
+        </div>
+        <div class="pillar-card">
+          <span class="pillar-badge">02 &bull; IT Support &amp; Automation</span>
+          <h3>Eliminating Repetitive Manual Work</h3>
+          <p>In hospital and village government settings, I reduced system downtime (40%–95%) and cut workstation setup from ~90 minutes to under 15 minutes using unattended Batch/PowerShell scripts and Telegram alert bots.</p>
+        </div>
+        <div class="pillar-card">
+          <span class="pillar-badge">03 &bull; IoT &amp; Applied Research</span>
+          <h3>Hardware Telemetry &amp; Signal AI</h3>
+          <p>I wire physical sensors (ESP8266, SHT31, MLX90614) to cloud SQL databases for 24/7 monitoring, and co-authored 2 peer-reviewed papers on IoT health screening (SINTA 5) and FMCW radar deep learning.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Projects & Case Studies -->
+    <section id="projects" class="block">
+      <div class="section-head">
+        <div class="kicker">Portfolio Projects</div>
+        <h2>9 Projects — Problem, Solution &amp; Verified Results</h2>
+        <p>
+          Each card starts with a plain-English summary so anyone can read it in 15 seconds. Click <strong>"Show Technical Architecture &amp; SQL / Code"</strong> inside any card to inspect the underlying implementation.
+        </p>
+      </div>
+
+      <div class="controls">
+        <div class="filter-tabs" id="filterTabs">
+          <button class="tab-btn active" onclick="filterProjects('all', this)">All Projects (9)</button>
+          <button class="tab-btn" onclick="filterProjects('data', this)">Data Analytics &amp; BI (5)</button>
+          <button class="tab-btn" onclick="filterProjects('iot', this)">IoT &amp; Hardware (2)</button>
+          <button class="tab-btn" onclick="filterProjects('it', this)">IT Automation (1)</button>
+          <button class="tab-btn" onclick="filterProjects('research', this)">AI Research (1)</button>
+        </div>
+        <div style="display:flex; gap:8px; align-items:center; flex-wrap:wrap;">
+          <input type="text" id="projectSearch" class="search-input" placeholder="Search (e.g. SQL, RFM, IoT, Python)..." oninput="applySearch()" />
+          <button class="btn" type="button" onclick="toggleAllDetails()">Expand / Collapse All</button>
+        </div>
+      </div>
+
+      <div class="project-grid" id="projectsGrid">
+
+        <!-- PROJECT 1 -->
+        <article class="project-card" data-category="data">
+          <div>
+            <div class="proj-top">
+              <span class="proj-cat">Data Analyst &bull; Operational BI</span>
+              <span class="proj-year mono">2026</span>
+            </div>
+            <h3 class="proj-title">01. Telecom &amp; IT Service SLA Incident Analytics</h3>
+            <p class="proj-summary">
+              Analyzed 5,000 IT and network support tickets over 12 months to find out why 1 in 5 tickets missed their service-level deadline (SLA) and which regions or root causes were slowing teams down.
+            </p>
+            <div class="metrics-strip">
+              <div class="metric-cell"><div class="m-val mono">79.3%</div><div class="m-lbl">SLA Compliance (5,000 tickets)</div></div>
+              <div class="metric-cell"><div class="m-val mono">16.41h</div><div class="m-lbl">Avg Resolution Time (MTTR)</div></div>
+              <div class="metric-cell"><div class="m-val mono">80.87%</div><div class="m-lbl">Breaches from Top 5 Causes</div></div>
+            </div>
+            <ul class="story-list">
+              <li><span class="story-tag">Problem</span><span>SLA compliance sat at 79.3% (below the 90% goal), with unclear root causes across 5 cities.</span></li>
+              <li><span class="story-tag">Solution</span><span>Built a SQLite star schema, ran SQL Pareto 80/20 &amp; MoM window queries, and built an interactive Chart.js dashboard.</span></li>
+              <li><span class="story-tag">Result</span><span>Pinpointed Sukabumi dispatch delays (74.17% SLA) and Fiber/Power outages (41.35% of all breaches).</span></li>
+            </ul>
+            <div class="tags">
+              <span class="tag">SQL / SQLite</span><span class="tag">Star Schema</span><span class="tag">Python</span><span class="tag">Pareto 80/20</span><span class="tag">Chart.js</span>
+            </div>
+          </div>
+          <div>
+            <div class="proj-actions">
+              <a class="btn btn-primary" href="dashboards/telecom-sla-dashboard.html" target="_blank" rel="noopener noreferrer">Open Interactive Dashboard &nearr;</a>
+              <a class="btn" href="https://github.com/DaffaAhmdhan/telecom-it-sla-analytics" target="_blank" rel="noopener noreferrer">GitHub Repo &nearr;</a>
+            </div>
+            <details class="case-study">
+              <summary>+ Show Technical Architecture &amp; SQL Query</summary>
+              <div class="case-body">
+                <p><strong>Key Insight:</strong> P2 - High tickets actually breached SLA more often (77.13%, 292 breaches) than P1 - Critical (83.87%), showing teams triage P1 fast while P2 queues silently cross their 8-hour threshold.</p>
+                <h4>Pareto 80/20 SQL Query (sql/schema_and_kpis.sql)</h4>
+                <pre class="mono">WITH breach_counts AS (
+    SELECT root_cause, COUNT(*) AS breach_count
+    FROM fact_tickets WHERE sla_met = 0 GROUP BY root_cause
+),
+total_breaches AS (SELECT SUM(breach_count) AS total FROM breach_counts)
+SELECT b.root_cause, b.breach_count,
+  ROUND(100.0 * SUM(b.breach_count) OVER (ORDER BY b.breach_count DESC) / t.total, 2) AS cumulative_pct
+FROM breach_counts b CROSS JOIN total_breaches t ORDER BY b.breach_count DESC;</pre>
+              </div>
+            </details>
+          </div>
+        </article>
+
+        <!-- PROJECT 2 -->
+        <article class="project-card" data-category="data">
+          <div>
+            <div class="proj-top">
+              <span class="proj-cat">Data Analyst &bull; Customer &amp; Revenue BI</span>
+              <span class="proj-year mono">2026</span>
+            </div>
+            <h3 class="proj-title">02. E-Commerce Cohort Retention &amp; RFM Segmentation</h3>
+            <p class="proj-summary">
+              Evaluated 6,581 online orders (Rp 4.18B revenue) across 2,400 customers to identify who generates repeat revenue, which buyers are slipping away, and how shipping delays hurt customer ratings.
+            </p>
+            <div class="metrics-strip">
+              <div class="metric-cell"><div class="m-val mono">Rp 4.18B</div><div class="m-lbl">Revenue (6,581 orders)</div></div>
+              <div class="metric-cell"><div class="m-val mono">79.2%</div><div class="m-lbl">Rev from Champions &amp; Loyal</div></div>
+              <div class="metric-cell"><div class="m-val mono">4.25 &rarr; 2.45&#9733;</div><div class="m-lbl">Rating Drop on Late Orders</div></div>
+            </div>
+            <ul class="story-list">
+              <li><span class="story-tag">Problem</span><span>Management lacked visibility into customer repeat behavior and why low 1–2 star reviews spiked.</span></li>
+              <li><span class="story-tag">Solution</span><span>Built a 12-month cohort retention matrix, RFM quantile segmentation in Python, and delivery SLA SQL checks.</span></li>
+              <li><span class="story-tag">Result</span><span>Found 274 At-Risk buyers (Rp 432.6M pool) and proved late shipping jumps 1–2&#9733; ratings from 6.38% to 55.1%.</span></li>
+            </ul>
+            <div class="tags">
+              <span class="tag">Python</span><span class="tag">SQLite / SQL</span><span class="tag">Cohort Heatmap</span><span class="tag">RFM Quantiles</span><span class="tag">Chart.js</span>
+            </div>
+          </div>
+          <div>
+            <div class="proj-actions">
+              <a class="btn btn-primary" href="dashboards/ecommerce-rfm-dashboard.html" target="_blank" rel="noopener noreferrer">Open Interactive Dashboard &nearr;</a>
+              <a class="btn" href="https://github.com/DaffaAhmdhan/ecommerce-cohort-rfm-analytics" target="_blank" rel="noopener noreferrer">GitHub Repo &nearr;</a>
+            </div>
+            <details class="case-study">
+              <summary>+ Show Technical Architecture &amp; SQL Query</summary>
+              <div class="case-body">
+                <p><strong>Segment Breakdown:</strong> Champions (12.0% of customers) drive 30.7% of revenue (avg 5.48 orders every 37.8 days). Loyal Customers (47.7%) add 48.5% of revenue.</p>
+                <h4>RFM Customer Aggregation Query (sql/cohort_and_rfm.sql)</h4>
+                <pre class="mono">SELECT customer_id,
+  CAST(julianday('2026-11-01') - julianday(MAX(order_date)) AS INTEGER) AS recency_days,
+  COUNT(order_id) AS frequency,
+  SUM(order_value_idr) AS monetary_idr
+FROM orders GROUP BY customer_id;</pre>
+              </div>
+            </details>
+          </div>
+        </article>
+
+        <!-- PROJECT 3 -->
+        <article class="project-card" data-category="data">
+          <div>
+            <div class="proj-top">
+              <span class="proj-cat">Data Analyst &bull; IoT Time-Series</span>
+              <span class="proj-year mono">2026</span>
+            </div>
+            <h3 class="proj-title">03. IoT Environmental &amp; Energy Telemetry Analytics</h3>
+            <p class="proj-summary">
+              Processed 17,280 hourly sensor logs across 4 facility rooms over 180 days to catch dangerous server-room overheating events early and calculate daytime electricity cost savings.
+            </p>
+            <div class="metrics-strip">
+              <div class="metric-cell"><div class="m-val mono">57,154 kWh</div><div class="m-lbl">Power Tracked (Rp 82.57M)</div></div>
+              <div class="metric-cell"><div class="m-val mono">120</div><div class="m-lbl">Z-Score Thermal Anomalies</div></div>
+              <div class="metric-cell"><div class="m-val mono">Rp 4.62M</div><div class="m-lbl">6-Mo Peak-Shift Savings</div></div>
+            </div>
+            <ul class="story-list">
+              <li><span class="story-tag">Problem</span><span>HVAC spikes and server-room heat anomalies went undetected until temperatures crossed hard limits.</span></li>
+              <li><span class="story-tag">Solution</span><span>Built a 24-hour SQL diurnal load profile and Python statistical Z-score detector (|z| &gt; 2.5) across 4 zones.</span></li>
+              <li><span class="story-tag">Result</span><span>Detected 120 anomalies (max 31.32&deg;C) and showed off-peak pre-cooling saves Rp 4.62M per 6 months.</span></li>
+            </ul>
+            <div class="tags">
+              <span class="tag">Time-Series ETL</span><span class="tag">Z-Score Statistics</span><span class="tag">SQL</span><span class="tag">Python</span><span class="tag">Energy BI</span>
+            </div>
+          </div>
+          <div>
+            <div class="proj-actions">
+              <a class="btn btn-primary" href="dashboards/iot-telemetry-dashboard.html" target="_blank" rel="noopener noreferrer">Open Interactive Dashboard &nearr;</a>
+              <a class="btn" href="https://github.com/DaffaAhmdhan/iot-telemetry-anomaly-analytics" target="_blank" rel="noopener noreferrer">GitHub Repo &nearr;</a>
+            </div>
+            <details class="case-study">
+              <summary>+ Show Technical Architecture &amp; Python Logic</summary>
+              <div class="case-body">
+                <p><strong>Key Insight:</strong> Server Rooms A &amp; B consume 62.8% of total electricity (35,897.8 kWh). Daytime power (09:00–17:00) jumps 45.9% from 2.822 kW to 4.117 kW.</p>
+                <h4>Per-Zone Z-Score Anomaly Flagging (src/run_analysis.py)</h4>
+                <pre class="mono">mean_t = sum(vals) / len(vals)
+std_t = math.sqrt(sum((v - mean_t) ** 2 for v in vals) / len(vals))
+anomalies = [x for x in series if std_t &gt; 0 and abs(x[1] - mean_t) / std_t &gt; 2.5]</pre>
+              </div>
+            </details>
+          </div>
+        </article>
+
+        <!-- PROJECT 4 -->
+        <article class="project-card" data-category="iot">
+          <div>
+            <div class="proj-top">
+              <span class="proj-cat">IoT &amp; Production Ops &bull; RS Fatmawati</span>
+              <span class="proj-year mono">2026</span>
+            </div>
+            <h3 class="proj-title">04. Hospital Server Room IoT Monitor &amp; Telegram Bot (#TCK)</h3>
+            <p class="proj-summary">
+              Live hardware-to-cloud monitoring system built for RS Fatmawati's hospital server room. Tracks temperature and humidity 24/7 and automatically dispatches Telegram incident tickets to technicians.
+            </p>
+            <div class="metrics-strip">
+              <div class="metric-cell"><div class="m-val mono">24/7 Live</div><div class="m-lbl">Continuous Telemetry</div></div>
+              <div class="metric-cell"><div class="m-val mono">30 Years</div><div class="m-lbl">SQL Daily Rollup Retention</div></div>
+              <div class="metric-cell"><div class="m-val mono">#TCK Bot</div><div class="m-lbl">Photo-Verified Ticket Close</div></div>
+            </div>
+            <ul class="story-list">
+              <li><span class="story-tag">Problem</span><span>Server room AC faults risked clinical downtime if no one walked in to check the room thermometer.</span></li>
+              <li><span class="story-tag">Solution</span><span>Wired ESP8266 + SHT31 sensor to Next.js &amp; Supabase SQL, paired with a two-way Telegram incident bot.</span></li>
+              <li><span class="story-tag">Result</span><span>Instant threshold alerts with accountability: tickets stay open until a technician uploads fix-proof photo.</span></li>
+            </ul>
+            <div class="tags">
+              <span class="tag">ESP8266</span><span class="tag">SHT31 Sensor</span><span class="tag">Next.js</span><span class="tag">Supabase SQL</span><span class="tag">Telegram API</span>
+            </div>
+          </div>
+          <div>
+            <div class="proj-actions">
+              <a class="btn btn-primary" href="https://nextjs-app-ten-blue.vercel.app" target="_blank" rel="noopener noreferrer">Open Live App &nearr;</a>
+              <a class="btn" href="https://github.com/DaffaAhmdhan/pemantauan-suhu-esp8266" target="_blank" rel="noopener noreferrer">GitHub Repo &nearr;</a>
+            </div>
+            <details class="case-study">
+              <summary>+ Show Technical Architecture &amp; 30-Year SQL Retention</summary>
+              <div class="case-body">
+                <p>To keep 30 years of climate history inside free-tier database storage, a scheduled SQL cron rolls up raw minute-level readings into compact daily min/avg/max rows before pruning old raw logs.</p>
+                <pre class="mono">INSERT INTO daily_telemetry_summary (log_date, min_t, avg_t, max_t)
+SELECT DATE(created_at), MIN(temp), AVG(temp), MAX(temp)
+FROM raw_sensor_logs WHERE created_at &lt; NOW() - INTERVAL '7 days'
+GROUP BY DATE(created_at);</pre>
+              </div>
+            </details>
+          </div>
+        </article>
+
+        <!-- PROJECT 5 -->
+        <article class="project-card" data-category="it">
+          <div>
+            <div class="proj-top">
+              <span class="proj-cat">IT Operations &bull; Windows Automation</span>
+              <span class="proj-year mono">2025 – 2026</span>
+            </div>
+            <h3 class="proj-title">05. Automated Hospital PC Deployment Suite (setup-komputer-baru.bat)</h3>
+            <p class="proj-summary">
+              Zero-touch Windows provisioning script built for RS Fatmawati to turn a brand-new PC into a ready-to-use hospital clinical workstation—eliminating hours of manual software and driver setup.
+            </p>
+            <div class="metrics-strip">
+              <div class="metric-cell"><div class="m-val mono">&lt; 15 min</div><div class="m-lbl">Down from ~90m manual setup</div></div>
+              <div class="metric-cell"><div class="m-val mono">Silent MSI</div><div class="m-lbl">Unattended App Installs</div></div>
+              <div class="metric-cell"><div class="m-val mono">DICOM / BPJS</div><div class="m-lbl">Clinical Ready Out-of-Box</div></div>
+            </div>
+            <ul class="story-list">
+              <li><span class="story-tag">Problem</span><span>Setting up each new polyclinic PC manually took ~90 minutes and caused missing DICOM or BPJS drivers.</span></li>
+              <li><span class="story-tag">Solution</span><span>Built Batch &amp; PowerShell scripts that silently install MicroDicom, RadiAnt, BPJS fingerprint SDKs, Radmin, and Office.</span></li>
+              <li><span class="story-tag">Result</span><span>Cut deployment time by over 80% with zero configuration drift across hospital units.</span></li>
+            </ul>
+            <div class="tags">
+              <span class="tag">Windows Batch</span><span class="tag">PowerShell</span><span class="tag">Silent MSI/EXE</span><span class="tag">DICOM / PACS</span><span class="tag">BPJS Biometrics</span>
+            </div>
+          </div>
+          <div>
+            <div class="proj-actions">
+              <span class="mono" style="font-size:12.5px; color:var(--green); font-weight:600;">&#10003; Active Internal Hospital Tool</span>
+            </div>
+            <details class="case-study">
+              <summary>+ Show Unattended Deployment Script Pattern</summary>
+              <div class="case-body">
+                <p>Runs sequentially from a USB drive or network share with zero user prompts, ensuring clinical kiosks never fall asleep mid-shift.</p>
+                <pre class="mono">@echo off
+start /wait "" "%~dp0pkg\MicroDicom-setup.exe" /S
+msiexec /i "%~dp0pkg\bpjs-fingerprint.msi" /qn /norestart
+powercfg -change -standby-timeout-ac 0</pre>
+              </div>
+            </details>
+          </div>
+        </article>
+
+        <!-- PROJECT 6 -->
+        <article class="project-card" data-category="data">
+          <div>
+            <div class="proj-top">
+              <span class="proj-cat">Data Analyst &bull; Retail BI</span>
+              <span class="proj-year mono">2026</span>
+            </div>
+            <h3 class="proj-title">06. Online Retail Sales &amp; Profitability BI Portfolio</h3>
+            <p class="proj-summary">
+              Interactive retail analytics web app focused on cleaning raw invoice records, uncovering seasonal buying peaks, and separating high-volume items from genuinely profitable product categories.
+            </p>
+            <ul class="story-list">
+              <li><span class="story-tag">Problem</span><span>Raw retail exports contained duplicate lines and negative returns that skewed revenue totals.</span></li>
+              <li><span class="story-tag">Solution</span><span>Cleaned transactions with Python/Pandas and SQL, then published category margin &amp; channel breakdowns.</span></li>
+              <li><span class="story-tag">Result</span><span>Clear live dashboard highlighting top-margin categories and seasonal demand windows.</span></li>
+            </ul>
+            <div class="tags">
+              <span class="tag">Python</span><span class="tag">Pandas</span><span class="tag">Matplotlib</span><span class="tag">SQL</span><span class="tag">Vercel</span>
+            </div>
+          </div>
+          <div>
+            <div class="proj-actions">
+              <a class="btn btn-primary" href="https://sales-analysis-portfolio.vercel.app" target="_blank" rel="noopener noreferrer">Open Live Demo &nearr;</a>
+              <a class="btn" href="https://github.com/DaffaAhmdhan/sales-analysis-portfolio" target="_blank" rel="noopener noreferrer">GitHub Repo &nearr;</a>
+            </div>
+            <details class="case-study">
+              <summary>+ Show Technical Scope &amp; Hygiene Steps</summary>
+              <div class="case-body">
+                <p>Strips malformed timestamps, cancels/returns, and duplicate invoice rows before computing gross margin per category and channel share.</p>
+              </div>
+            </details>
+          </div>
+        </article>
+
+        <!-- PROJECT 7 -->
+        <article class="project-card" data-category="data">
+          <div>
+            <div class="proj-top">
+              <span class="proj-cat">Data Visualization &bull; Public Census Data</span>
+              <span class="proj-year mono">2026</span>
+            </div>
+            <h3 class="proj-title">07. ACS Poverty &amp; Socio-Economic Demographic Explorer</h3>
+            <p class="proj-summary">
+              Interactive React &amp; TypeScript visualization tool built to explore American Community Survey (ACS) public census data—making poverty indicators and income disparity easy to compare visually.
+            </p>
+            <ul class="story-list">
+              <li><span class="story-tag">Problem</span><span>Multi-dimensional census spreadsheets are hard for non-analysts to compare across demographics.</span></li>
+              <li><span class="story-tag">Solution</span><span>Built an interactive TypeScript + React web interface with filterable socio-economic charts.</span></li>
+              <li><span class="story-tag">Result</span><span>Deployed publicly on Vercel for instant side-by-side demographic comparison.</span></li>
+            </ul>
+            <div class="tags">
+              <span class="tag">TypeScript</span><span class="tag">React</span><span class="tag">Data Viz</span><span class="tag">ACS Census</span><span class="tag">Vercel</span>
+            </div>
+          </div>
+          <div>
+            <div class="proj-actions">
+              <a class="btn btn-primary" href="https://acs-poverty-portfolio.vercel.app" target="_blank" rel="noopener noreferrer">Open Live Demo &nearr;</a>
+              <a class="btn" href="https://github.com/DaffaAhmdhan/acs-poverty-portfolio" target="_blank" rel="noopener noreferrer">GitHub Repo &nearr;</a>
+            </div>
+            <details class="case-study">
+              <summary>+ Show Technical Details &amp; Indicators</summary>
+              <div class="case-body">
+                <p>Visualizes poverty rates alongside household income brackets, education tiers, and regional demographic splits from ACS survey releases.</p>
+              </div>
+            </details>
+          </div>
+        </article>
+
+        <!-- PROJECT 8 -->
+        <article class="project-card" data-category="research">
+          <div>
+            <div class="proj-top">
+              <span class="proj-cat">AI Research &bull; Published Journal (ARMADA)</span>
+              <span class="proj-year mono">2026</span>
+            </div>
+            <h3 class="proj-title">08. Hybrid Spatial-Temporal Deep Learning for FMCW Radar HAR</h3>
+            <p class="proj-summary">
+              Published international research using millimeter-wave radar signals (instead of cameras) to recognize human movement and falls—protecting patient privacy in healthcare and smart-home monitoring.
+            </p>
+            <ul class="story-list">
+              <li><span class="story-tag">Problem</span><span>Optical cameras fail in darkness and invade privacy in clinical or elderly care rooms.</span></li>
+              <li><span class="story-tag">Solution</span><span>Built a Range/Doppler FFT signal pipeline (TI IWR6843AOPEVM) and benchmarked 4 PyTorch architectures.</span></li>
+              <li><span class="story-tag">Result</span><span>Published in ARMADA International Journal (Vol. 4, No. 7, DOI 10.55681/armada.v4i7.3001).</span></li>
+            </ul>
+            <div class="tags">
+              <span class="tag">Python</span><span class="tag">PyTorch</span><span class="tag">FMCW Radar</span><span class="tag">FFT Signal Processing</span><span class="tag">3D CNN-LSTM</span>
+            </div>
+          </div>
+          <div>
+            <div class="proj-actions">
+              <a class="btn btn-primary" href="https://doi.org/10.55681/armada.v4i7.3001" target="_blank" rel="noopener noreferrer">Read Journal Paper &nearr;</a>
+            </div>
+            <details class="case-study">
+              <summary>+ Show Signal Processing &amp; Model Benchmark</summary>
+              <div class="case-body">
+                <p>Converts raw 60–64 GHz radar ADC cubes through 1D Range FFT &rarr; 2D Doppler FFT &rarr; micro-Doppler spectrograms, benchmarking 3D CNN-LSTM, Bi-LSTM, Dilated Conv, and Hybrid Ensemble models.</p>
+              </div>
+            </details>
+          </div>
+        </article>
+
+        <!-- PROJECT 9 -->
+        <article class="project-card" data-category="iot">
+          <div>
+            <div class="proj-top">
+              <span class="proj-cat">Embedded Systems &bull; SINTA 5 Journal</span>
+              <span class="proj-year mono">2023</span>
+            </div>
+            <h3 class="proj-title">09. Contactless Body Temp IoT Scanner with Finite State Machine</h3>
+            <p class="proj-summary">
+              Built and deployed an automated RFID + infrared temperature scanner for SMA Al-Kenzie Bandung, pairing student ID taps with contactless body temperature checks and publishing in SINTA 5 journal JPkMN.
+            </p>
+            <ul class="story-list">
+              <li><span class="story-tag">Problem</span><span>Manual morning temperature checks created queues and lacked student attendance logging.</span></li>
+              <li><span class="story-tag">Solution</span><span>Combined MLX90614 infrared sensor + RFID RC522 under a deterministic C++ Finite State Machine.</span></li>
+              <li><span class="story-tag">Result</span><span>Deployed at SMA Al-Kenzie Bandung and published in accredited SINTA 5 journal (JPkMN Vol. 4 No. 2).</span></li>
+            </ul>
+            <div class="tags">
+              <span class="tag">Arduino / C++</span><span class="tag">MLX90614</span><span class="tag">RFID RC522</span><span class="tag">Finite State Machine</span><span class="tag">SINTA 5</span>
+            </div>
+          </div>
+          <div>
+            <div class="proj-actions">
+              <a class="btn" href="https://github.com/DaffaAhmdhan/Sistem-Tertanam-" target="_blank" rel="noopener noreferrer">GitHub FSM Repo &nearr;</a>
+            </div>
+            <details class="case-study">
+              <summary>+ Show Finite State Machine Flow</summary>
+              <div class="case-body">
+                <p>Deterministic C++ state transitions eliminate sensor read collisions during fast student entry:</p>
+                <pre class="mono">IDLE -&gt; RFID_AUTH -&gt; TEMP_SAMPLE (MLX90614) -&gt; THRESHOLD_EVAL -&gt; LOG_DISPLAY</pre>
+              </div>
+            </details>
+          </div>
+        </article>
+
+      </div>
+    </section>
+
+    <!-- Work Experience -->
+    <section id="experience" class="block">
+      <div class="section-head">
+        <div class="kicker">Career Timeline</div>
+        <h2>Work Experience</h2>
+        <p>Hands-on roles across hospital IT operations, village digitalization, telecom network support, and university research.</p>
+      </div>
+
+      <div class="exp-list">
+        <div class="exp-card">
+          <div>
+            <div class="exp-when">Dec 2025 – Present</div>
+            <div class="exp-where">RS Fatmawati &bull; South Jakarta</div>
+          </div>
+          <div>
+            <h3 class="exp-role">IT Support &amp; Systems Automation</h3>
+            <ul class="exp-bullets">
+              <li>Built a 24/7 IoT server-room temperature/humidity monitor (ESP8266 + SHT31 + Next.js + Supabase) with 30-year SQL rollup retention.</li>
+              <li>Developed a two-way Telegram incident bot (<code>#TCK</code>) requiring photo proof before ticket closure.</li>
+              <li>Created unattended Batch &amp; PowerShell installers for hospital PCs, DICOM viewers (MicroDicom/RadiAnt), and BPJS biometrics.</li>
+              <li>Support 24/7 clinical operations across SIMRS, E-Klaim INA-CBG, Transmedic, and medical peripherals.</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="exp-card">
+          <div>
+            <div class="exp-when">Sep 2025 – Nov 2025</div>
+            <div class="exp-where">Teknisi Go &bull; Indonesia</div>
+          </div>
+          <div>
+            <h3 class="exp-role">L2 Technician (Hardware &amp; Data Recovery)</h3>
+            <ul class="exp-bullets">
+              <li>Recovered data from damaged or non-booting SSD/HDD drives using Linux diagnostic environments.</li>
+              <li>Performed component-level laptop repairs: LCD/LED panels, embedded keyboards, cooling fans, hinges, and DC charging ports.</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="exp-card">
+          <div>
+            <div class="exp-when">Jan 2024 – Jul 2025</div>
+            <div class="exp-where">Sindangresmi Village Gov. &bull; Sukabumi</div>
+          </div>
+          <div>
+            <h3 class="exp-role">IT Support &amp; Digitalization Lead</h3>
+            <ul class="exp-bullets">
+              <li>Cut system downtime by <strong>40%</strong> through preventive network maintenance and proactive troubleshooting.</li>
+              <li>Improved public document processing speed by <strong>20%</strong> via workflow digitalization, reaching <strong>87.8%</strong> user adoption.</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="exp-card">
+          <div>
+            <div class="exp-when">Jun 2022 – Aug 2022</div>
+            <div class="exp-where">PT Telkom Indonesia (ASO Div.) &bull; Bogor</div>
+          </div>
+          <div>
+            <h3 class="exp-role">Network Operations Intern</h3>
+            <ul class="exp-bullets">
+              <li>Helped reduce internet downtime by <strong>95%</strong> and resolved 98% of network issues before they reached customers.</li>
+              <li>Updated technical runbooks and documentation, accelerating technician onboarding by <strong>15%</strong>.</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="exp-card">
+          <div>
+            <div class="exp-when">Jan 2022 – Jan 2023</div>
+            <div class="exp-where">RnEST Lab, Telkom University &bull; Bandung</div>
+          </div>
+          <div>
+            <h3 class="exp-role">Head of Laboratory &amp; Research Team Lead</h3>
+            <ul class="exp-bullets">
+              <li>Managed lab budget and supervised embedded systems &amp; IoT environmental monitoring prototypes.</li>
+              <li>Led and co-authored the SINTA 5 published IoT health screening project at SMA Al-Kenzie Bandung.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Skills -->
+    <section id="skills" class="block">
+      <div class="section-head">
+        <div class="kicker">Capabilities</div>
+        <h2>Skills &amp; Technical Stack</h2>
+      </div>
+      <div class="skills-grid">
+        <div class="skill-box">
+          <h3>Data Analytics &amp; BI</h3>
+          <div class="pill-wrap">
+            <span class="skill-pill">SQL (SQLite / PostgreSQL)</span>
+            <span class="skill-pill">Google BigQuery</span>
+            <span class="skill-pill">Python (Pandas, NumPy)</span>
+            <span class="skill-pill">Power BI</span>
+            <span class="skill-pill">Microsoft Excel</span>
+            <span class="skill-pill">Chart.js</span>
+            <span class="skill-pill">Cohort &amp; RFM Modeling</span>
+          </div>
+        </div>
+        <div class="skill-box">
+          <h3>IT Operations &amp; Automation</h3>
+          <div class="pill-wrap">
+            <span class="skill-pill">Windows Batch (.bat)</span>
+            <span class="skill-pill">PowerShell</span>
+            <span class="skill-pill">Silent MSI/EXE Deploy</span>
+            <span class="skill-pill">SIMRS &amp; E-Klaim INA-CBG</span>
+            <span class="skill-pill">DICOM / PACS</span>
+            <span class="skill-pill">Telegram Bot Webhooks</span>
+            <span class="skill-pill">Linux Data Recovery</span>
+          </div>
+        </div>
+        <div class="skill-box">
+          <h3>IoT &amp; Embedded Systems</h3>
+          <div class="pill-wrap">
+            <span class="skill-pill">ESP8266 &amp; ESP32</span>
+            <span class="skill-pill">Arduino (C++ FSM)</span>
+            <span class="skill-pill">SHT31 / MLX90614</span>
+            <span class="skill-pill">RFID RC522</span>
+            <span class="skill-pill">I2C / UART / MQTT / REST</span>
+            <span class="skill-pill">Supabase SQL</span>
+          </div>
+        </div>
+        <div class="skill-box">
+          <h3>AI &amp; Signal Processing</h3>
+          <div class="pill-wrap">
+            <span class="skill-pill">PyTorch</span>
+            <span class="skill-pill">3D CNN-LSTM &amp; Bi-LSTM</span>
+            <span class="skill-pill">FMCW Radar (IWR6843)</span>
+            <span class="skill-pill">Range &amp; Doppler FFT</span>
+            <span class="skill-pill">Micro-Doppler Spectrograms</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Education, Publications & Certifications -->
+    <section id="research" class="block">
+      <div class="section-head">
+        <div class="kicker">Academic &amp; Credentials</div>
+        <h2>Education, Publications &amp; Certifications</h2>
+      </div>
+      <div class="grid-2">
+        <div class="card-box">
+          <div class="mono" style="font-size:12px; color:var(--accent); font-weight:600;">2019 – 2023 &bull; GPA 3.68 / 4.00 (Cum Laude)</div>
+          <h3 style="font-size:18px; margin:6px 0 4px;">B.Eng. in Computer Engineering (S1 Teknik Komputer)</h3>
+          <p style="font-size:14px; color:var(--muted); margin:0 0 12px;">Telkom University, Bandung</p>
+          <p style="font-size:14px; margin:0;">
+            Thesis: <em>Design of an IoT-Based Contactless Body Temperature Detection Tool at SMA Al-Kenzie Bandung</em> (published in SINTA 5 journal JPkMN).
+          </p>
+          <hr style="border:none; border-top:1px solid var(--border); margin:16px 0;">
+          <h4 style="font-size:13px; text-transform:uppercase; letter-spacing:0.05em; margin:0 0 8px;">Verified Certifications</h4>
+          <ul style="margin:0; padding-left:18px; font-size:14px;">
+            <li>Google Data Analytics Specialization (2024)</li>
+            <li>UC Davis — SQL for Data Science (2024)</li>
+            <li>Google Cloud BigQuery (2024)</li>
+            <li>IT Support &amp; Helpdesk Technical Skills — Udemy (2025)</li>
+          </ul>
+        </div>
+
+        <div class="card-box">
+          <div style="margin-bottom:16px;">
+            <span class="proj-cat">International Journal (2026)</span>
+            <h4 style="font-size:15.5px; margin:8px 0 4px;">Hybrid Spatial-Temporal Deep Learning Architectures for FMCW Radar-Based Human Activity Recognition</h4>
+            <p style="font-size:13.5px; color:var(--muted); margin:0 0 6px;">ARMADA: Jurnal Penelitian Multidisiplin, Vol. 4, No. 7</p>
+            <a class="mono" style="font-size:12.5px; color:var(--accent); font-weight:600;" href="https://doi.org/10.55681/armada.v4i7.3001" target="_blank" rel="noopener noreferrer">DOI: 10.55681/armada.v4i7.3001 &nearr;</a>
+          </div>
+          <hr style="border:none; border-top:1px solid var(--border); margin:16px 0;">
+          <div>
+            <span class="proj-cat" style="background:var(--green-bg); color:var(--green);">SINTA 5 Accredited (2023)</span>
+            <h4 style="font-size:15.5px; margin:8px 0 4px;">Desain Alat Pendeteksi Suhu Tubuh Berbasis IoT di SMA Al-Kenzie Bandung</h4>
+            <p style="font-size:13.5px; color:var(--muted); margin:0;">Journal of Community Service Nusantara (JPkMN), Vol. 4, No. 2</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Documentation -->
+    <section id="documentation" class="block">
+      <div class="section-head">
+        <div class="kicker">Documentation</div>
+        <h2>How the Data Projects &amp; Portfolio Work</h2>
+        <p>
+          Every number in the 3 new Data Analytics dashboards comes from runnable Python &amp; SQLite pipelines rather than static mockups.
+        </p>
+      </div>
+      <div class="grid-2">
+        <div class="card-box">
+          <h3 style="font-size:16px; margin:0 0 8px;">Pipeline Architecture</h3>
+          <pre class="snippet mono">data/generate_data.py  --&gt;  data/*.csv (raw records)
+         |
+         v
+src/run_analysis.py    --&gt;  SQLite DB + sql/*.sql
+         |
+         v
+output/*_metrics.json  --&gt;  dashboards/*.html (Chart.js)</pre>
+          <p style="font-size:14px; margin:12px 0 0;">
+            Read the complete guide, schemas, and project changelog in <a href="DOCUMENTATION.md" target="_blank" style="color:var(--accent); font-weight:600;">DOCUMENTATION.md &nearr;</a>.
+          </p>
+        </div>
+
+        <div class="card-box">
+          <h3 style="font-size:16px; margin:0 0 8px;">Reproduce Locally</h3>
+          <pre class="snippet mono"># Serve portfolio + dashboards
+python -m http.server 8080 --directory portfolio
+
+# Re-run any project pipeline (example: Telecom SLA)
+python projects/telecom-it-sla-analytics/data/generate_data.py
+python projects/telecom-it-sla-analytics/src/run_analysis.py</pre>
+          <p style="font-size:14px; margin:12px 0 0;">
+            Theme preference (<code>light</code> / <code>dark</code>) is stored in <code>localStorage('daffa_theme_v2')</code> and synced across this page and all 3 dashboards.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Contact -->
+    <section id="contact" class="block" style="border-bottom:none;">
+      <div class="card-box" style="display:flex; flex-wrap:wrap; justify-content:space-between; align-items:center; gap:20px;">
+        <div>
+          <div class="kicker">Contact</div>
+          <h2 style="font-size:24px; margin:4px 0 6px;">Let's Connect</h2>
+          <p style="margin:0; font-size:14.5px; color:var(--body); max-width:54ch;">
+            Based in Kalibaru, Cilodong, Depok (Jabodetabek). Open to Data Analyst, BI, IT Operations, and IoT Systems opportunities.
+          </p>
+        </div>
+        <div style="display:flex; flex-wrap:wrap; gap:10px;">
+          <a class="btn btn-primary" href="mailto:daffaahmadhan@gmail.com">daffaahmadhan@gmail.com</a>
+          <a class="btn" href="https://wa.me/6287871367608" target="_blank" rel="noopener noreferrer">WhatsApp (087871367608)</a>
+          <a class="btn" href="https://www.linkedin.com/in/daffa-ahmadhan-khusumah" target="_blank" rel="noopener noreferrer">LinkedIn &nearr;</a>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="wrap">
+    &copy; 2026 Daffa Ahmadhan Khusumah &bull; <a href="DOCUMENTATION.md" style="color:var(--accent); font-weight:600;">Full Technical Documentation</a>
+  </footer>
+
+  <script>
+    const root = document.documentElement;
+    const savedTheme = localStorage.getItem('daffa_theme_v2') || 'light';
+    root.setAttribute('data-theme', savedTheme);
+    const themeToggle = document.getElementById('themeToggle');
+
+    function syncThemeLabel() {
+      themeToggle.textContent = root.getAttribute('data-theme') === 'light' ? 'Dark Mode' : 'Light Mode';
+    }
+    syncThemeLabel();
+
+    themeToggle.addEventListener('click', () => {
+      const next = root.getAttribute('data-theme') === 'light' ? 'dark' : 'light';
+      root.setAttribute('data-theme', next);
+      localStorage.setItem('daffa_theme_v2', next);
+      syncThemeLabel();
+    });
+
+    function toggleDropdown() {
+      document.getElementById('cvDropdown').classList.toggle('open');
+    }
+    document.addEventListener('click', (e) => {
+      const dd = document.getElementById('cvDropdown');
+      if (!dd.contains(e.target)) dd.classList.remove('open');
+    });
+
+    let activeCategory = 'all';
+    function filterProjects(category, btn) {
+      activeCategory = category;
+      document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+      if (btn) btn.classList.add('active');
+      updateVisibleProjects();
+    }
+
+    function applySearch() {
+      updateVisibleProjects();
+    }
+
+    function updateVisibleProjects() {
+      const query = document.getElementById('projectSearch').value.trim().toLowerCase();
+      document.querySelectorAll('.project-card').forEach(card => {
+        const catMatch = activeCategory === 'all' || card.getAttribute('data-category') === activeCategory;
+        const textMatch = !query || card.innerText.toLowerCase().includes(query);
+        card.style.display = (catMatch && textMatch) ? 'flex' : 'none';
+      });
+    }
+
+    let expandedAll = false;
+    function toggleAllDetails() {
+      expandedAll = !expandedAll;
+      document.querySelectorAll('details.case-study').forEach(d => {
+        d.open = expandedAll;
+      });
+    }
+  </script>
+</body>
+</html>
